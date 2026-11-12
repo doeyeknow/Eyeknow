@@ -267,7 +267,10 @@ const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /** Capture one eye photo: best stills or a burst, sharpest frame for
  *  display, aligned average for analysis. Null only when the video
- *  isn't running at all. */
+ *  isn't running at all. When every captured frame is unsharp or the
+ *  camera hasn't produced a usable frame yet, the caller is told so
+ *  the scan flow can warn instead of silently reading a bad photo
+ *  (Adam, 2026-11-12, iris accuracy work). */
 export async function captureEyePhoto(
   video: HTMLVideoElement,
   stream: MediaStream,

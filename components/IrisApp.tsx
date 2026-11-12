@@ -1068,6 +1068,56 @@ export default function IrisApp() {
     }
   }
 
+  /** Coupon-code free unlock (Adam, 2026-11-12): the server
+   *  validates the code and unlocks the whole person; the app just
+   *  refreshes the reading. Called by UnlockModal after the code is
+   *  accepted. */
+  async function unlockViewingWithCoupon(scan: ScanRecord, code: string) {
+    if (!account?.user) {
+      setAuthMode("login");
+      setAuthError("");
+      setAuthNote("Sign in or create an account first — your unlocked reading is stored in your account so you can open it on any device.");
+      setAuthOpen(true);
+      return;
+    }
+    setUnlockBusy(true);
+    setUnlockNote(null);
+    try {
+      await fetchTimeout("/api/scans", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(scan),
+      }, 10000).catch(() => undefined);
+      const res = await fetchTimeout("/api/checkout/coupon", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ scanId: scan.id, code }),
+      }, 25000);
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        free?: boolean;
+        unlocked?: boolean;
+        alreadyUnlocked?: boolean;
+        error?: string;
+      };
+      if (res.ok && data.ok && data.free) {
+        const cloud = await loadCloudScans(loadSaved());
+        const twin = cloud?.find((s) => s.id === scan.id);
+        if (twin) setViewing(twin);
+        if (introScan) {
+          setIntroScan(null);
+          setView("report");
+        }
+        return;
+      }
+      setUnlockNote(data.error ?? "That coupon code isn’t valid.");
+    } catch {
+      setUnlockNote("Couldn’t check the code — try again in a moment.");
+    } finally {
+      setUnlockBusy(false);
+    }
+  }
+
   /** The My readings card's unlock button (Adam, 2026-11-06). */
   function unlockPersonFromLibrary(person: PersonGroup, tier: "basic" | "full") {
     const rep = person.scans[0];
@@ -1103,9 +1153,11 @@ export default function IrisApp() {
             void videoRef.current.play().catch(() => {});
           }
         });
-      } catch {
+      } catch (err) {
         setCamError(
-          "Camera isn't available here — check the browser's camera permission, or upload a close-up eye photo instead.",
+          err instanceof Error && err.name === "NotAllowedError"
+            ? "Camera permission was denied — allow it in your browser settings, or upload a close-up eye photo instead."
+            : "Camera isn't available here — check the browser's camera permission, or upload a close-up eye photo instead.",
         );
         setCamOn(false);
       }
@@ -1152,7 +1204,25 @@ export default function IrisApp() {
     try {
       // Let the reading screen paint before the heavy pixel work starts.
       await new Promise((r) => setTimeout(r, 60));
-      const result = await autoRead(src, { analysisSrc, stackedFrames });
+      // One automatic retry (Adam, 2026-11-12, iris accuracy work): when
+      // the reader can't find the iris in the multi-frame average, try
+      // the sharpest single frame instead before asking for a retake.
+      // Both images come from the same capture so geometry transfers.
+      let result: Awaited<ReturnType<typeof autoRead>>;
+      try {
+        result = await autoRead(src, { analysisSrc, stackedFrames });
+      } catch (firstErr) {
+        if (!(firstErr instanceof IrisDetectionError)) throw firstErr;
+        if (analysisSrc) {
+          try {
+            result = await autoRead(src);
+          } catch {
+            throw firstErr;
+          }
+        } else {
+          throw firstErr;
+        }
+      }
       const record: ScanRecord = {
         id: uid(),
         createdAt: Date.now(),
@@ -1260,7 +1330,7 @@ export default function IrisApp() {
       timersRef.current.forEach((t) => window.clearTimeout(t));
       setReadError(
         err instanceof IrisDetectionError
-          ? "We couldn't find the iris in that photo, so there's nothing solid to read. Please try again — a close, bright, straight-on photo that fills the frame with the eye works best."
+          ? "We couldn't lock onto the iris in that photo, so there's nothing solid to read. Move closer so the eye fills the frame, use bright even lighting, and look straight into the lens — then try again."
           : "That photo couldn't be read — try a closer, brighter photo of the eye and try again.",
       );
       setStep("capture");
@@ -1732,6 +1802,9 @@ export default function IrisApp() {
             onUnlockFull={() => void unlockViewing()}
             onFinaleChange={setFinaleUnlock}
             unlockSignal={unlockAsk}
+            onCouponUnlock={(code) => {
+              if (viewing) void unlockViewingWithCoupon(viewing, code);
+            }}
             personName={viewingGroup?.name ?? null}
             onNamePerson={
               viewingGroup ? (name) => renamePerson(viewingGroup, name) : undefined
@@ -1833,6 +1906,9 @@ export default function IrisApp() {
                   persons={persons}
                   shareUrlFor={shareUrlForScan}
                   onUnlock={unlockPersonFromLibrary}
+                  onCouponUnlock={(scan, code) => {
+                    void unlockViewingWithCoupon(scan, code);
+                  }}
                   onOpen={(scan, tab) => {
                     if (tab) tabIntentRef.current = tab;
                     const s = withPersonUnlock(scan, saved);

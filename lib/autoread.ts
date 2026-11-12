@@ -198,6 +198,58 @@ function findPupil(
     }
     return out;
   };
+  // Candidate evaluation helper. The pupil should sit within the
+  // frame, be roughly round, and not so small as noise.
+  const evalBlob = (cells: number[]): {
+    cx: number;
+    cy: number;
+    area: number;
+    roundness: number;
+    fill: number;
+  } | null => {
+    const area = cells.length;
+    const frac = area / (gw * gh);
+    if (frac < 0.0008 || frac > 0.06) return null;
+    let sx = 0;
+    let sy = 0;
+    let minx = gw;
+    let maxx = 0;
+    let miny = gh;
+    let maxy = 0;
+    for (const c of cells) {
+      const x = c % gw;
+      const y = Math.floor(c / gw);
+      sx += x;
+      sy += y;
+      if (x < minx) minx = x;
+      if (x > maxx) maxx = x;
+      if (y < miny) miny = y;
+      if (y > maxy) maxy = y;
+    }
+    const mx = sx / area / gw;
+    const my = sy / area / gh;
+    if (mx < 0.15 || mx > 0.85 || my < 0.15 || my > 0.85) return null;
+    const bw = maxx - minx + 1;
+    const bh = maxy - miny + 1;
+    if (Math.max(bw, bh) / Math.min(bw, bh) > 1.7) return null;
+    const fill = area / (bw * bh);
+    if (fill < 0.42) return null;
+    const rCells = Math.sqrt(area / Math.PI);
+    if (rCells < minDimG * 0.018 || rCells > minDimG * 0.16) return null;
+    const roundness = Math.min(bw, bh) / Math.max(bw, bh);
+    return { cx: sx / area, cy: sy / area, area, roundness, fill };
+  };
+  // Evaluate a mask and return the best round compact blob.
+  const bestOfMask = (mask: Uint8Array) => {
+    let best: { cells: number[]; score: number } | null = null;
+    for (const cells of components(mask)) {
+      const b = evalBlob(cells);
+      if (!b) continue;
+      const score = b.area * (0.4 + 0.6 * b.roundness) * b.fill;
+      if (!best || score > best.score) best = { cells, score };
+    }
+    return best;
+  };
   // The pupil is the darkest compact ROUND blob in the frame. Brows,
   // lashes and hair are dark too but elongated, and in a bright photo a
   // single loose threshold lets them win on size — so search from the
@@ -207,41 +259,7 @@ function findPupil(
   for (const T of [18, 26, 34, 44, 56]) {
     const mask = new Uint8Array(gw * gh);
     for (let i = 0; i < gray.length; i++) mask[i] = gray[i] < T ? 1 : 0;
-    let best: { cells: number[]; score: number } | null = null;
-    for (const cells of components(mask)) {
-      const area = cells.length;
-      const frac = area / mask.length;
-      if (frac < 0.0008 || frac > 0.06) continue;
-      let sx = 0;
-      let sy = 0;
-      let minx = gw;
-      let maxx = 0;
-      let miny = gh;
-      let maxy = 0;
-      for (const c of cells) {
-        const x = c % gw;
-        const y = Math.floor(c / gw);
-        sx += x;
-        sy += y;
-        if (x < minx) minx = x;
-        if (x > maxx) maxx = x;
-        if (y < miny) miny = y;
-        if (y > maxy) maxy = y;
-      }
-      const mx = sx / area / gw;
-      const my = sy / area / gh;
-      if (mx < 0.15 || mx > 0.85 || my < 0.15 || my > 0.85) continue;
-      const bw = maxx - minx + 1;
-      const bh = maxy - miny + 1;
-      if (Math.max(bw, bh) / Math.min(bw, bh) > 1.7) continue;
-      const fill = area / (bw * bh);
-      if (fill < 0.42) continue;
-      const rCells = Math.sqrt(area / Math.PI);
-      if (rCells < minDimG * 0.018 || rCells > minDimG * 0.16) continue;
-      const roundness = Math.min(bw, bh) / Math.max(bw, bh);
-      const score = area * (0.4 + 0.6 * roundness) * fill;
-      if (!best || score > best.score) best = { cells, score };
-    }
+    const best = bestOfMask(mask);
     if (!best) continue;
     let cells = best.cells;
     let coreSum = 0;
@@ -286,7 +304,47 @@ function findPupil(
     // 0.16 of the grid's short side; hold the final radius to the
     // same bound (a real pupil in a close-up is well under it).
     const rCap = minDimG * 0.17 * (w / gw);
-    const r = Math.min(Math.max(rArea, 0.9 * maxExt * (w / gw)), rCap);
+    let r = Math.min(Math.max(rArea, 0.9 * maxExt * (w / gw)), rCap);
+    // Radius refinement (Adam, 2026-11-12, iris accuracy work): the
+    // pupil/iris boundary is the darkest-to-mid jump on the iris side
+    // of the radial gradient. Sample a set of angles around the
+    // pupil and take the median radius where the gradient peaks, as a
+    // robust confirmation of the blob-derived estimate. If they agree,
+    // keep the blob radius; if the gradient reads a clearly larger
+    // boundary (the blob under-measured a dilated or partially-covered
+    // pupil), take the median of the two so the reading doesn't
+    // mis-scale the whole annulus.
+    {
+      const NB = 36;
+      const radiiRefined: number[] = [];
+      for (let k = 0; k < NB; k++) {
+        const th = (k / NB) * Math.PI * 2;
+        const dx = Math.sin(th);
+        const dy = -Math.cos(th);
+        // Track luminance along this ray, look for the dark-to-light
+        // transition. Pupil luminance is low; iris fibres are brighter.
+        const SAMPLES = 24;
+        let prev = 0;
+        for (let s = 1; s <= SAMPLES; s++) {
+          const rr = (s / SAMPLES) * (rCap / 1.15);
+          const c = px(cx + dx * rr, cy + dy * rr);
+          const g = lumOf(c);
+          if (s > 2 && prev > 0 && g - prev > 26) {
+            radiiRefined.push(rr - (rCap / 1.15) / SAMPLES);
+            break;
+          }
+          prev = g;
+        }
+      }
+      if (radiiRefined.length >= NB * 0.3) {
+        const medRefined = median(radiiRefined);
+        // Accept the refined radius only when it sits inside the same
+        // expected range and is a modest correction of the blob.
+        if (medRefined > 0 && Math.abs(medRefined - r) < r * 0.4) {
+          r = (r + medRefined) / 2;
+        }
+      }
+    }
     // Pupil shape from the same blob: boundary radius in 24 clock
     // bins (bin 0 = 12 o'clock, clockwise), gaps interpolated.
     const NB = 24;
@@ -418,6 +476,44 @@ export async function autoRead(
   if (traced.validFrac < 0.45) {
     const lenient = traceEdges(0.62);
     if (lenient.validFrac > traced.validFrac) traced = lenient;
+  }
+  // Gradient fallback pass (Adam, 2026-11-12, iris accuracy work): when
+  // the ratio-based traces still struggle, find the edge by taking the
+  // strongest radial drop in luminance/saturation per ray — a second
+  // way to find the boundary when the ratio pass starves on warm or
+  // shadowed photos.
+  if (traced.validFrac < 0.3) {
+    const eR: number[] = new Array(RAYS).fill(0);
+    const v: boolean[] = new Array(RAYS).fill(false);
+    for (let k = 0; k < RAYS; k++) {
+      const th = (k / RAYS) * Math.PI * 2;
+      const dx = Math.sin(th);
+      const dy = -Math.cos(th);
+      let bestGrad = -Infinity;
+      let bestR = 0;
+      for (let r = rp * 1.4; r < maxR; r += 3) {
+        const c0 = px(cx + dx * (r - 3), cy + dy * (r - 3));
+        const c1 = px(cx + dx * r, cy + dy * r);
+        const g0 = satOf(c0) * 150 + (255 - lumOf(c0)) * 0.45;
+        const g1 = satOf(c1) * 150 + (255 - lumOf(c1)) * 0.45;
+        const grad = g0 - g1;
+        if (grad > bestGrad) {
+          bestGrad = grad;
+          bestR = r - 3;
+        }
+      }
+      if (bestGrad > 12) {
+        eR[k] = bestR;
+        v[k] = true;
+      }
+    }
+    const validRadii = eR.filter((_, k) => v[k]);
+    const vf = validRadii.length / RAYS;
+    let RR = validRadii.length >= 12 ? median(validRadii) : minDim * 0.3;
+    RR = Math.min(Math.max(RR, rp * 1.9), maxR);
+    if (vf > traced.validFrac) {
+      traced = { edgeR: eR, valid: v, validFrac: vf, R: RR };
+    }
   }
   const edgeR = traced.edgeR;
   const valid = traced.valid;
@@ -1066,8 +1162,13 @@ export async function autoRead(
   }
 
   // Square crop around the iris for the stored/displayed image.
-  let side = Math.min(minDim, R * 2.7);
-  side = Math.max(side, R * 2.15);
+  // Tighten the multiplier range (Adam, 2026-11-12, iris accuracy
+  // work): the crop needs to fit the whole iris with a bit of
+  // sclera, but not so much that the eye drifts to a corner. When
+  // the pupil isn't precisely located, the crop stays generous so
+  // the whole iris is still inside.
+  let side = Math.min(minDim, R * 2.55);
+  side = Math.max(side, R * 2.05);
   // Never larger than the photo itself: a side beyond the frame
   // makes the output draw run past the photo's edge, leaving the
   // crop shrunk in a corner on black.
