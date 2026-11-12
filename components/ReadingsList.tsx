@@ -20,6 +20,7 @@ export default function ReadingsList({
   onDeletePerson,
   shareUrlFor,
   onUnlock,
+  onCouponUnlock,
 }: {
   persons: PersonGroup[];
   onOpen: (scan: ScanRecord, tab?: ReadingTab) => void;
@@ -29,6 +30,9 @@ export default function ReadingsList({
   /** Start a basic/full unlock checkout for this person (Adam,
    *  2026-11-06: the card's unlock button). */
   onUnlock: (person: PersonGroup, tier: "basic" | "full") => void;
+  /** Coupon-code free unlock (Adam, 2026-11-12): the server has
+   *  already validated the code — the app refreshes the reading. */
+  onCouponUnlock: (scan: ScanRecord, code: string) => void;
 }) {
   const [menuFor, setMenuFor] = useState<PersonGroup | null>(null);
   const [confirming, setConfirming] = useState(false);
@@ -326,6 +330,10 @@ export default function ReadingsList({
           }}
           onFull={() => {
             onUnlock(unlockFor, "full");
+            setUnlockFor(null);
+          }}
+          onCouponUnlock={(code) => {
+            onCouponUnlock(repOf(unlockFor), code);
             setUnlockFor(null);
           }}
           onClose={() => setUnlockFor(null)}

@@ -2,13 +2,13 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ScanRecord } from "@/lib/chart";
-import { chartAreaFor, revealPicks, SIGN_COLORS } from "@/lib/chart";
+import { chartAreaFor, revealPicks, SIGNS, SIGN_COLORS } from "@/lib/chart";
 import IrisIllustration from "./IrisIllustration";
 import UnlockPrice from "./DiscountPrice";
 import UnlockModal from "./UnlockModal";
 import Galaxy from "./Galaxy";
 import { REGION_ICONS } from "./RegionBadge";
-import type { BodyRegion } from "@/lib/chart";
+import type { BodyRegion, RevealAreaPick } from "@/lib/chart";
 
 /** A body part's line icon in the app's style (gold, currentColor). */
 function RIcon({ region, size = 18 }: { region: BodyRegion; size?: number }) {
@@ -70,6 +70,7 @@ export default function RevealSlides({
   onNamePerson,
   onFinaleChange,
   unlockSignal,
+  onCouponUnlock,
 }: {
   scan: ScanRecord;
   onDone: () => void;
@@ -85,6 +86,9 @@ export default function RevealSlides({
    *  unlockSignal increments when that button is tapped. */
   onFinaleChange?: (atUnlockFinale: boolean) => void;
   unlockSignal?: number;
+  /** Coupon-code free unlock (Adam, 2026-11-12): the server has
+   *  already validated the code — the app refreshes the reading. */
+  onCouponUnlock?: (code: string) => void;
   /** Shown under the finale's unlock buttons when the intro was
    *  opened from My readings (Adam, 2026-11-06): the way back to
    *  the list without paying — the report itself opens only after
@@ -102,6 +106,7 @@ export default function RevealSlides({
   const [nameFocus, setNameFocus] = useState(false);
   const [unlockOpen, setUnlockOpen] = useState(false);
   const [dir, setDir] = useState(1);
+  const [areaDetail, setAreaDetail] = useState<RevealAreaPick | null>(null);
 
   useEffect(() => {
     if (!auto || idx >= total - 1) return undefined;
@@ -203,9 +208,14 @@ export default function RevealSlides({
           const cx = pts.reduce((t, q) => t + parseFloat(q.left), 0) / pts.length;
           const cy = pts.reduce((t, q) => t + parseFloat(q.top), 0) / pts.length;
           return (
-            <span
+            <button
+              type="button"
               key={a.area}
-              aria-label={a.area}
+              aria-label={`Open ${a.area} detection details`}
+              onClick={() => {
+                setAuto(false);
+                setAreaDetail(a);
+              }}
               style={{
                 position: "absolute",
                 left: `${cx}%`,
@@ -221,10 +231,12 @@ export default function RevealSlides({
                 justifyContent: "center",
                 color: "#ffd76a",
                 zIndex: 3,
+                cursor: "pointer",
+                padding: 0,
               }}
             >
               <RIcon region={a.region} size={20} />
-            </span>
+            </button>
           );
         })}
       {markMode === "dots" &&
@@ -378,6 +390,13 @@ export default function RevealSlides({
               )}
             </h2>
             {illus(false, "icons")}
+            <p className="rvi-sub" style={{ textAlign: "center", marginBottom: 6 }}>
+              We found <b>{picks.totalSigns} sign{picks.totalSigns === 1 ? "" : "s"}</b> in{" "}
+              {poss ?? "your"} {eyeWord} iris.
+            </p>
+            <p className="rvi-sub" style={{ textAlign: "center", marginTop: 0, marginBottom: 10, fontSize: "0.85em" }}>
+              Tap an area icon to see what we detected in that part of {poss ?? "your"} eye.
+            </p>
             {!locked && (
 
               <div className="rvi-actions">
@@ -389,6 +408,69 @@ export default function RevealSlides({
           </>
         )}
       </div>
+      {areaDetail && (
+        <div className="modal-backdrop" onClick={() => setAreaDetail(null)} role="presentation">
+          <div
+            className="modal-card"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${areaDetail.area} detection details`}
+          >
+            <button
+              type="button"
+              className="modal-close"
+              onClick={() => setAreaDetail(null)}
+              aria-label="Close area details"
+            >
+              ×
+            </button>
+            <p className="report-brand">
+              eyeKnow · {poss ?? "your"} {eyeWord} iris · {areaDetail.area}
+            </p>
+            <h3 className="modal-title">{areaDetail.area}</h3>
+            <div className="modal-iris">
+              <img src={scan.image} alt={`${eyeWord} iris crop for ${areaDetail.area}`} />
+              <svg
+                className="modal-iris-overlay"
+                viewBox="0 0 100 100"
+                aria-hidden="true"
+              >
+                <rect width="100" height="100" fill="rgba(8, 18, 14, 0.35)" />
+                {scan.markers
+                  .filter((m) => chartAreaFor(scan.eye, m.sector, m.zone).label === areaDetail.area)
+                  .map((m) => (
+                    <circle
+                      key={m.id}
+                      cx={m.x * 100}
+                      cy={m.y * 100}
+                      r={2.6}
+                      fill={SIGN_COLORS[m.sign].bg}
+                      stroke="rgba(255,255,255,0.85)"
+                      strokeWidth="0.6"
+                    />
+                  ))}
+              </svg>
+            </div>
+            <ul className="modal-findings">
+              {scan.markers
+                .filter((m) => chartAreaFor(scan.eye, m.sector, m.zone).label === areaDetail.area)
+                .map((m) => (
+                  <li key={m.id}>
+                    <b style={{ color: SIGN_COLORS[m.sign].fg ? undefined : "#0d3b37" }}>
+                      {SIGNS[m.sign].label}
+                    </b>{" "}
+                    — {m.tone ? `${m.tone} tone · ` : ""}
+                    {m.confidence ? `${m.confidence} confidence` : ""}
+                    <div style={{ color: "#55685f", fontSize: "0.92em", marginTop: 4 }}>
+                      {SIGNS[m.sign].traditional}
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </div>
+      )}
       {unlockOpen && (
         <UnlockModal
           name={named || null}
@@ -402,6 +484,10 @@ export default function RevealSlides({
           onFull={() => {
             setUnlockOpen(false);
             onUnlockFull();
+          }}
+          onCouponUnlock={(code) => {
+            setUnlockOpen(false);
+            onCouponUnlock?.(code);
           }}
           onClose={() => setUnlockOpen(false)}
         />

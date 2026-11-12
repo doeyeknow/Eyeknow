@@ -6,6 +6,10 @@ import UnlockPrice from "./DiscountPrice";
 import BasicIncludesModal from "./BasicIncludesModal";
 import FullIncludesModal from "./FullIncludesModal";
 
+/** Free-unlock coupon codes (Adam, 2026-11-12). Server-validated in
+ * app/api/checkout — the client never trusts a code alone. */
+const COUPON_CODE = "jewlz";
+
 /**
  * The unlock chooser (Adam, 2026-11-06): pressing unlock anywhere
  * opens this modal — never a swap to inline buttons. Basic, full,
@@ -20,6 +24,7 @@ export default function UnlockModal({
   basicPaid,
   onBasic,
   onFull,
+  onCouponUnlock,
   onClose,
 }: {
   name: string | null;
@@ -29,11 +34,17 @@ export default function UnlockModal({
   basicPaid?: boolean;
   onBasic: () => void;
   onFull: () => void;
+  /** Coupon-code free unlock (Adam, 2026-11-12): the server has
+   *  already validated the code — the app refreshes the reading. */
+  onCouponUnlock: (code: string) => void;
   onClose: () => void;
 }) {
   const [mounted, setMounted] = useState(false);
   const [showBasicInfo, setShowBasicInfo] = useState(false);
   const [showFullInfo, setShowFullInfo] = useState(false);
+  const [coupon, setCoupon] = useState("");
+  const [couponMsg, setCouponMsg] = useState<null | { ok: boolean; text: string }>(null);
+  const [couponChecking, setCouponChecking] = useState(false);
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -204,6 +215,98 @@ export default function UnlockModal({
             </small>
           </span>
         </a>
+
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+            if (couponChecking) return;
+            const code = coupon.trim();
+            if (!code) {
+              setCouponMsg({ ok: false, text: "Enter a code first." });
+              return;
+            }
+            setCouponChecking(true);
+            setCouponMsg(null);
+            try {
+              const r = await fetch("/api/checkout/coupon", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ scanId, code }),
+              });
+              const j = (await r.json().catch(() => null)) as
+                | { ok?: boolean; free?: boolean; error?: string }
+                | null;
+              if (r.ok && j?.ok && j.free) {
+                setCouponMsg({ ok: true, text: "Code accepted — unlocking now…" });
+                onCouponUnlock(code);
+              } else {
+                setCouponMsg({
+                  ok: false,
+                  text: j?.error ?? "That code isn’t valid. Try again.",
+                });
+              }
+            } catch {
+              setCouponMsg({ ok: false, text: "Couldn’t check the code — try again." });
+            } finally {
+              setCouponChecking(false);
+            }
+          }}
+          style={{ marginTop: 12 }}
+        >
+          <div style={{ display: "flex", gap: 8 }}>
+            <input
+              type="text"
+              value={coupon}
+              onChange={(e) => setCoupon(e.target.value)}
+              placeholder="Coupon code"
+              aria-label="Coupon code"
+              autoComplete="off"
+              maxLength={32}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                background: "rgba(255, 255, 255, 0.06)",
+                border: "1px solid rgba(240, 230, 200, 0.25)",
+                borderRadius: 10,
+                color: "inherit",
+                font: "inherit",
+                fontSize: "1rem",
+                padding: "11px 12px",
+              }}
+            />
+            <button
+              type="submit"
+              disabled={couponChecking}
+              style={{
+                background: "#ffd76a",
+                color: "#10201c",
+                border: "none",
+                borderRadius: 10,
+                font: "inherit",
+                fontWeight: 700,
+                padding: "11px 16px",
+                cursor: couponChecking ? "wait" : "pointer",
+              }}
+            >
+              {couponChecking ? "Checking…" : "Apply"}
+            </button>
+          </div>
+        </form>
+
+        {couponMsg && (
+          <p
+            role="status"
+            style={{
+              margin: "10px 0 0",
+              color: couponMsg.ok ? "#7ed9a2" : "#f4a08a",
+              fontSize: "0.92rem",
+              fontWeight: 600,
+              textAlign: "center",
+            }}
+          >
+            {couponMsg.text}
+          </p>
+        )}
 
         <button
           type="button"
