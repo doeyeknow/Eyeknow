@@ -1,0 +1,1195 @@
+🔑 Got authentication token
+
+🔍 Fetching deployment info for: dpl_8RFwWMY89XTpG8VNDNjtetff5yzE
+   Resolving teams...
+   Trying dpl_8RFwWMY89XTpG8VNDNjtetff5yzE in personal account...
+✅ Got deployment info
+
+📦 Deployment ID:  dpl_8RFwWMY89XTpG8VNDNjtetff5yzE
+🌐 Deployment URL: irisread-1nmmpa1em-taoswoodz-7293.vercel.app
+📁 Project:        irisread
+
+📋 Fetching file tree from API...
+
+✅ Got file tree (16 top-level entries)
+
+📁 Output directory: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source
+
+🗑️  Clearing previous download...
+
+⬇️  Downloading files...
+   (Use --verbose to see detailed progress)
+
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/[username]/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/admin/page.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/affiliates/page.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/admin/overview/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/admin/reviews/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/card/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/click/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/payout/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/price/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/resolve/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/slug/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/slug-check/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/affiliates/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/auth/account/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/auth/google/callback/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/auth/google/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/auth/login/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/auth/logout/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/auth/me/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/auth/register/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/books/checkout/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/books/download/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/books/verify/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/books/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/checkout/gift/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/checkout/guest/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/checkout/verify/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/checkout/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/gifts/early/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/gifts/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/push/reminders/run/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/push/subscribe/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/refmark/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/reviews/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/scans/[id]/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/scans/claim/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/scans/discount/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/scans/import/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/scans/shared/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/scans/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/stripe/webhook/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/subscriptions/checkout/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/subscriptions/claim/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/subscriptions/overview/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/subscriptions/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/api/support/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/creator/page.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/share/[id]/route.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/subscription/page.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/team/layout.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/team/page.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/globals.css
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/layout.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/app/page.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0000.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0001.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0002.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0003.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0004.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0005.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0006.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0007.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0008.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0009.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0010.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0011.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0012.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0013.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0014.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0015.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0016.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0017.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0018.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0019.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0020.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0021.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0022.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0023.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0024.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0025.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0026.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0027.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0028.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0029.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0030.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0031.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0032.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0033.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0034.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0035.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0036.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0037.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0038.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0039.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0040.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0041.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0042.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0043.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0044.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0045.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0046.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0047.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0048.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0049.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0050.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0051.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0052.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0053.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0054.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0055.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0056.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0057.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0058.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0059.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0060.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0061.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0062.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0063.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0064.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0065.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0066.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0067.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0068.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0069.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0070.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/dope-sick/part-0071.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0000.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0001.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0002.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0003.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0004.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0005.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0006.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0007.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0008.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0009.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0010.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0011.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0012.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0013.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0014.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0015.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0016.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0017.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0018.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0019.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0020.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0021.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0022.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0023.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0024.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0025.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0026.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0027.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0028.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0029.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0030.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0031.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0032.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0033.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0034.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0035.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0036.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0037.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0038.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0039.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0040.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0041.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0042.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0043.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0044.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0045.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0046.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0047.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0048.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0049.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0050.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0051.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0052.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0053.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0054.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0055.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0056.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0057.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0058.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0059.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0060.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0061.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0062.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0063.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0064.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0065.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0066.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0067.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0068.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0069.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0070.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0071.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0072.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0073.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0074.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0075.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0076.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0077.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0078.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0079.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0080.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0081.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0082.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0083.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0084.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0085.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0086.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0087.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0088.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0089.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0090.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0091.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0092.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0093.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0094.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0095.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0096.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0097.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0098.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0099.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0100.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0101.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0102.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0103.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0104.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0105.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0106.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0107.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0108.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0109.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0110.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0111.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0112.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0113.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0114.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0115.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0116.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0117.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0118.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0119.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-ground-you-stand-on/part-0120.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0000.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0001.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0002.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0003.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0004.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0005.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0006.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0007.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0008.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0009.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0010.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0011.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0012.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0013.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0014.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0015.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0016.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0017.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0018.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0019.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0020.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0021.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0022.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0023.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0024.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0025.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0026.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0027.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0028.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0029.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0030.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0031.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0032.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0033.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0034.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0035.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0036.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0037.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0038.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0039.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0040.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0041.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0042.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0043.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0044.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0045.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0046.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0047.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0048.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0049.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0050.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0051.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0052.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0053.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0054.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0055.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0056.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0057.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0058.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0059.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0060.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0061.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0062.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0063.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0064.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0065.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0066.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0067.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0068.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0069.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0070.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0071.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0072.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0073.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0074.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0075.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0076.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0077.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0078.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0079.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0080.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0081.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0082.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0083.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0084.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0085.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0086.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0087.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0088.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0089.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0090.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0091.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0092.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0093.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0094.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0095.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0096.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0097.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0098.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0099.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0100.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0101.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0102.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0103.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0104.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0105.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0106.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0107.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0108.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0109.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0110.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0111.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0112.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0113.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0114.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0115.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0116.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0117.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0118.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0119.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0120.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0121.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0122.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0123.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0124.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0125.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0126.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0127.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0128.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0129.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0130.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0131.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0132.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0133.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0134.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0135.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0136.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0137.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0138.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0139.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0140.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0141.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0142.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0143.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/books/the-trouble-with-english/part-0144.part
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AdminDashboard.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AffiliateFlier.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AffiliatePrice.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AffiliateSetup.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AffiliateSignIn.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AffiliateSupport.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AffiliatesDashboard.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/AppDiagnostics.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/BasicIncludesModal.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/BodyMap.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/BodyMapArt.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/BottomNav.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/CaptureTips.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/CheckoutModal.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/ContactSender.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/CoverCards.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/CreatorTeaser.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/DemoCycles.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/DiscountPrice.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/FlierAutoPrint.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/FullIncludesModal.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/Galaxy.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/GalaxyMenu.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/GiftModals.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/HomeScene.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/HowItWasMade.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/HowModal.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/InstallFooter.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/InstallToast.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/IrisApp.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/IrisFlip.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/IrisIllustration.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/JoinTeam.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/LogoEye.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/PalmPromo.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/PlotPhoto.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/PurchaseReveal.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/ReadingsList.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/ReferralCapture.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/RegionBadge.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/ReportView.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/RevealSlides.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/Reviews.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/ScrollFx.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/SellingGuide.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/ShareButtons.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/ShareToolbox.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/SignGuide.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/StageOverlay.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/SubscriptionLanding.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/SubscriptionOffer.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/SupporterGiftPanels.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/TaosWalker.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/TeamPwaSetup.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/UnlockModal.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/UnlockRemindButton.tsx
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/bookCatalog.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/gaze.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/heroColor.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/components/postArt.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/admin.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/affiliates-client.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/affiliates.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/auth.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/autoread.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/books.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/build-stamp.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/capture.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/chart.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/compare.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/db.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/diet.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/example.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/gifts.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/person.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/pricing.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/push.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/pushClient.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/refmark.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/refmarkImage.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/reviews.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/shared.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/stripe.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/subscriptionTerms.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/subscriptions.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/lib/supporterGifts.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/book-covers/dope-sick.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/book-covers/ground-we-stand-on.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/book-covers/trouble-with-english.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/diet/berries.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/diet/citrus.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/diet/greens.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/diet/spread.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/includes/basic-bodymap.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/includes/basic-findings.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/includes/basic-overview.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/includes/full-diet.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/bodymap.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/books.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/constitution.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/diet.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/freescans.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/gift.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/preview.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/reading.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/subscription.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/share-art/timeline.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/apple-touch-icon.png
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/creator-portrait.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/demo-iris-blue.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/demo-iris-gold.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/demo-iris-green.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/demo-iris-grey.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/demo-iris-violet.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/demo-iris.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/icon-192.png
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/icon-512.png
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/icon-maskable-512.png
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/icon.svg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/iridology-chart.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/logo.svg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/manifest.webmanifest
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/palm-slide-1.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/palm-slide-2.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/palm-slide-3.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/palm-slide-4.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/palm-slide-5.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/palm-slide-6.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/sw.js
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/team-sw.js
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/public/team.webmanifest
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/scripts/stamp-version.js
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/test-images/iris-test-blue.png
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/test-images/iris-test.png
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/test-images/real-eye-1.jpg
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/DOMAIN-OPTIONS.md
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/LAUNCH-STEPS.md
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/middleware.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/next-env.d.ts
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/next.config.mjs
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/package-lock.json
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/package.json
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/tsconfig.json
+✅ Downloaded: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/source/vercel.json
+
+🎉 All files processed successfully!
+
+📊 Running comparison...
+
+📁 Total files: 536
+   ✅ Downloaded: 536
+   ⏭️  Skipped: 0
+   ❌ Failed: 0
+💾 Total size: 31.39 MB
+
+📈 File types breakdown:
+   part             338 files
+   ts                77 files
+   tsx               64 files
+   jpg               36 files
+   png                6 files
+   json               4 files
+   js                 3 files
+   svg                2 files
+   webmanifest        2 files
+   md                 2 files
+
+🌳 File structure tree:
+
+├── 📁 app
+│   ├── 📁 [username]
+│   │   └── 📄 route.ts
+│   ├── 📁 admin
+│   │   └── 📄 page.tsx
+│   ├── 📁 affiliates
+│   │   └── 📄 page.tsx
+│   ├── 📁 api
+│   │   ├── 📁 admin
+│   │   │   ├── 📁 overview
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📁 reviews
+│   │   │       └── 📄 route.ts
+│   │   ├── 📁 affiliates
+│   │   │   ├── 📁 card
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 click
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 payout
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 price
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 resolve
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 slug
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 slug-check
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📄 route.ts
+│   │   ├── 📁 auth
+│   │   │   ├── 📁 account
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 google
+│   │   │   │   ├── 📁 callback
+│   │   │   │   │   └── 📄 route.ts
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 login
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 logout
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 me
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📁 register
+│   │   │       └── 📄 route.ts
+│   │   ├── 📁 books
+│   │   │   ├── 📁 checkout
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 download
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 verify
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📄 route.ts
+│   │   ├── 📁 checkout
+│   │   │   ├── 📁 gift
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 guest
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 verify
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📄 route.ts
+│   │   ├── 📁 gifts
+│   │   │   ├── 📁 early
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📄 route.ts
+│   │   ├── 📁 push
+│   │   │   ├── 📁 reminders
+│   │   │   │   └── 📁 run
+│   │   │   │       └── 📄 route.ts
+│   │   │   └── 📁 subscribe
+│   │   │       └── 📄 route.ts
+│   │   ├── 📁 refmark
+│   │   │   └── 📄 route.ts
+│   │   ├── 📁 reviews
+│   │   │   └── 📄 route.ts
+│   │   ├── 📁 scans
+│   │   │   ├── 📁 [id]
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 claim
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 discount
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 import
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 shared
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📄 route.ts
+│   │   ├── 📁 stripe
+│   │   │   └── 📁 webhook
+│   │   │       └── 📄 route.ts
+│   │   ├── 📁 subscriptions
+│   │   │   ├── 📁 checkout
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 claim
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 overview
+│   │   │   │   └── 📄 route.ts
+│   │   │   └── 📄 route.ts
+│   │   └── 📁 support
+│   │       └── 📄 route.ts
+│   ├── 📁 creator
+│   │   └── 📄 page.tsx
+│   ├── 📁 share
+│   │   └── 📁 [id]
+│   │       └── 📄 route.ts
+│   ├── 📁 subscription
+│   │   └── 📄 page.tsx
+│   ├── 📁 team
+│   │   ├── 📄 layout.tsx
+│   │   └── 📄 page.tsx
+│   ├── 📄 globals.css
+│   ├── 📄 layout.tsx
+│   └── 📄 page.tsx
+├── 📁 books
+│   ├── 📁 dope-sick
+│   │   ├── 📄 part-0000.part
+│   │   ├── 📄 part-0001.part
+│   │   ├── 📄 part-0002.part
+│   │   ├── 📄 part-0003.part
+│   │   ├── 📄 part-0004.part
+│   │   ├── 📄 part-0005.part
+│   │   ├── 📄 part-0006.part
+│   │   ├── 📄 part-0007.part
+│   │   ├── 📄 part-0008.part
+│   │   ├── 📄 part-0009.part
+│   │   ├── 📄 part-0010.part
+│   │   ├── 📄 part-0011.part
+│   │   ├── 📄 part-0012.part
+│   │   ├── 📄 part-0013.part
+│   │   ├── 📄 part-0014.part
+│   │   ├── 📄 part-0015.part
+│   │   ├── 📄 part-0016.part
+│   │   ├── 📄 part-0017.part
+│   │   ├── 📄 part-0018.part
+│   │   ├── 📄 part-0019.part
+│   │   ├── 📄 part-0020.part
+│   │   ├── 📄 part-0021.part
+│   │   ├── 📄 part-0022.part
+│   │   ├── 📄 part-0023.part
+│   │   ├── 📄 part-0024.part
+│   │   ├── 📄 part-0025.part
+│   │   ├── 📄 part-0026.part
+│   │   ├── 📄 part-0027.part
+│   │   ├── 📄 part-0028.part
+│   │   ├── 📄 part-0029.part
+│   │   ├── 📄 part-0030.part
+│   │   ├── 📄 part-0031.part
+│   │   ├── 📄 part-0032.part
+│   │   ├── 📄 part-0033.part
+│   │   ├── 📄 part-0034.part
+│   │   ├── 📄 part-0035.part
+│   │   ├── 📄 part-0036.part
+│   │   ├── 📄 part-0037.part
+│   │   ├── 📄 part-0038.part
+│   │   ├── 📄 part-0039.part
+│   │   ├── 📄 part-0040.part
+│   │   ├── 📄 part-0041.part
+│   │   ├── 📄 part-0042.part
+│   │   ├── 📄 part-0043.part
+│   │   ├── 📄 part-0044.part
+│   │   ├── 📄 part-0045.part
+│   │   ├── 📄 part-0046.part
+│   │   ├── 📄 part-0047.part
+│   │   ├── 📄 part-0048.part
+│   │   ├── 📄 part-0049.part
+│   │   ├── 📄 part-0050.part
+│   │   ├── 📄 part-0051.part
+│   │   ├── 📄 part-0052.part
+│   │   ├── 📄 part-0053.part
+│   │   ├── 📄 part-0054.part
+│   │   ├── 📄 part-0055.part
+│   │   ├── 📄 part-0056.part
+│   │   ├── 📄 part-0057.part
+│   │   ├── 📄 part-0058.part
+│   │   ├── 📄 part-0059.part
+│   │   ├── 📄 part-0060.part
+│   │   ├── 📄 part-0061.part
+│   │   ├── 📄 part-0062.part
+│   │   ├── 📄 part-0063.part
+│   │   ├── 📄 part-0064.part
+│   │   ├── 📄 part-0065.part
+│   │   ├── 📄 part-0066.part
+│   │   ├── 📄 part-0067.part
+│   │   ├── 📄 part-0068.part
+│   │   ├── 📄 part-0069.part
+│   │   ├── 📄 part-0070.part
+│   │   └── 📄 part-0071.part
+│   ├── 📁 the-ground-you-stand-on
+│   │   ├── 📄 part-0000.part
+│   │   ├── 📄 part-0001.part
+│   │   ├── 📄 part-0002.part
+│   │   ├── 📄 part-0003.part
+│   │   ├── 📄 part-0004.part
+│   │   ├── 📄 part-0005.part
+│   │   ├── 📄 part-0006.part
+│   │   ├── 📄 part-0007.part
+│   │   ├── 📄 part-0008.part
+│   │   ├── 📄 part-0009.part
+│   │   ├── 📄 part-0010.part
+│   │   ├── 📄 part-0011.part
+│   │   ├── 📄 part-0012.part
+│   │   ├── 📄 part-0013.part
+│   │   ├── 📄 part-0014.part
+│   │   ├── 📄 part-0015.part
+│   │   ├── 📄 part-0016.part
+│   │   ├── 📄 part-0017.part
+│   │   ├── 📄 part-0018.part
+│   │   ├── 📄 part-0019.part
+│   │   ├── 📄 part-0020.part
+│   │   ├── 📄 part-0021.part
+│   │   ├── 📄 part-0022.part
+│   │   ├── 📄 part-0023.part
+│   │   ├── 📄 part-0024.part
+│   │   ├── 📄 part-0025.part
+│   │   ├── 📄 part-0026.part
+│   │   ├── 📄 part-0027.part
+│   │   ├── 📄 part-0028.part
+│   │   ├── 📄 part-0029.part
+│   │   ├── 📄 part-0030.part
+│   │   ├── 📄 part-0031.part
+│   │   ├── 📄 part-0032.part
+│   │   ├── 📄 part-0033.part
+│   │   ├── 📄 part-0034.part
+│   │   ├── 📄 part-0035.part
+│   │   ├── 📄 part-0036.part
+│   │   ├── 📄 part-0037.part
+│   │   ├── 📄 part-0038.part
+│   │   ├── 📄 part-0039.part
+│   │   ├── 📄 part-0040.part
+│   │   ├── 📄 part-0041.part
+│   │   ├── 📄 part-0042.part
+│   │   ├── 📄 part-0043.part
+│   │   ├── 📄 part-0044.part
+│   │   ├── 📄 part-0045.part
+│   │   ├── 📄 part-0046.part
+│   │   ├── 📄 part-0047.part
+│   │   ├── 📄 part-0048.part
+│   │   ├── 📄 part-0049.part
+│   │   ├── 📄 part-0050.part
+│   │   ├── 📄 part-0051.part
+│   │   ├── 📄 part-0052.part
+│   │   ├── 📄 part-0053.part
+│   │   ├── 📄 part-0054.part
+│   │   ├── 📄 part-0055.part
+│   │   ├── 📄 part-0056.part
+│   │   ├── 📄 part-0057.part
+│   │   ├── 📄 part-0058.part
+│   │   ├── 📄 part-0059.part
+│   │   ├── 📄 part-0060.part
+│   │   ├── 📄 part-0061.part
+│   │   ├── 📄 part-0062.part
+│   │   ├── 📄 part-0063.part
+│   │   ├── 📄 part-0064.part
+│   │   ├── 📄 part-0065.part
+│   │   ├── 📄 part-0066.part
+│   │   ├── 📄 part-0067.part
+│   │   ├── 📄 part-0068.part
+│   │   ├── 📄 part-0069.part
+│   │   ├── 📄 part-0070.part
+│   │   ├── 📄 part-0071.part
+│   │   ├── 📄 part-0072.part
+│   │   ├── 📄 part-0073.part
+│   │   ├── 📄 part-0074.part
+│   │   ├── 📄 part-0075.part
+│   │   ├── 📄 part-0076.part
+│   │   ├── 📄 part-0077.part
+│   │   ├── 📄 part-0078.part
+│   │   ├── 📄 part-0079.part
+│   │   ├── 📄 part-0080.part
+│   │   ├── 📄 part-0081.part
+│   │   ├── 📄 part-0082.part
+│   │   ├── 📄 part-0083.part
+│   │   ├── 📄 part-0084.part
+│   │   ├── 📄 part-0085.part
+│   │   ├── 📄 part-0086.part
+│   │   ├── 📄 part-0087.part
+│   │   ├── 📄 part-0088.part
+│   │   ├── 📄 part-0089.part
+│   │   ├── 📄 part-0090.part
+│   │   ├── 📄 part-0091.part
+│   │   ├── 📄 part-0092.part
+│   │   ├── 📄 part-0093.part
+│   │   ├── 📄 part-0094.part
+│   │   ├── 📄 part-0095.part
+│   │   ├── 📄 part-0096.part
+│   │   ├── 📄 part-0097.part
+│   │   ├── 📄 part-0098.part
+│   │   ├── 📄 part-0099.part
+│   │   ├── 📄 part-0100.part
+│   │   ├── 📄 part-0101.part
+│   │   ├── 📄 part-0102.part
+│   │   ├── 📄 part-0103.part
+│   │   ├── 📄 part-0104.part
+│   │   ├── 📄 part-0105.part
+│   │   ├── 📄 part-0106.part
+│   │   ├── 📄 part-0107.part
+│   │   ├── 📄 part-0108.part
+│   │   ├── 📄 part-0109.part
+│   │   ├── 📄 part-0110.part
+│   │   ├── 📄 part-0111.part
+│   │   ├── 📄 part-0112.part
+│   │   ├── 📄 part-0113.part
+│   │   ├── 📄 part-0114.part
+│   │   ├── 📄 part-0115.part
+│   │   ├── 📄 part-0116.part
+│   │   ├── 📄 part-0117.part
+│   │   ├── 📄 part-0118.part
+│   │   ├── 📄 part-0119.part
+│   │   └── 📄 part-0120.part
+│   └── 📁 the-trouble-with-english
+│       ├── 📄 part-0000.part
+│       ├── 📄 part-0001.part
+│       ├── 📄 part-0002.part
+│       ├── 📄 part-0003.part
+│       ├── 📄 part-0004.part
+│       ├── 📄 part-0005.part
+│       ├── 📄 part-0006.part
+│       ├── 📄 part-0007.part
+│       ├── 📄 part-0008.part
+│       ├── 📄 part-0009.part
+│       ├── 📄 part-0010.part
+│       ├── 📄 part-0011.part
+│       ├── 📄 part-0012.part
+│       ├── 📄 part-0013.part
+│       ├── 📄 part-0014.part
+│       ├── 📄 part-0015.part
+│       ├── 📄 part-0016.part
+│       ├── 📄 part-0017.part
+│       ├── 📄 part-0018.part
+│       ├── 📄 part-0019.part
+│       ├── 📄 part-0020.part
+│       ├── 📄 part-0021.part
+│       ├── 📄 part-0022.part
+│       ├── 📄 part-0023.part
+│       ├── 📄 part-0024.part
+│       ├── 📄 part-0025.part
+│       ├── 📄 part-0026.part
+│       ├── 📄 part-0027.part
+│       ├── 📄 part-0028.part
+│       ├── 📄 part-0029.part
+│       ├── 📄 part-0030.part
+│       ├── 📄 part-0031.part
+│       ├── 📄 part-0032.part
+│       ├── 📄 part-0033.part
+│       ├── 📄 part-0034.part
+│       ├── 📄 part-0035.part
+│       ├── 📄 part-0036.part
+│       ├── 📄 part-0037.part
+│       ├── 📄 part-0038.part
+│       ├── 📄 part-0039.part
+│       ├── 📄 part-0040.part
+│       ├── 📄 part-0041.part
+│       ├── 📄 part-0042.part
+│       ├── 📄 part-0043.part
+│       ├── 📄 part-0044.part
+│       ├── 📄 part-0045.part
+│       ├── 📄 part-0046.part
+│       ├── 📄 part-0047.part
+│       ├── 📄 part-0048.part
+│       ├── 📄 part-0049.part
+│       ├── 📄 part-0050.part
+│       ├── 📄 part-0051.part
+│       ├── 📄 part-0052.part
+│       ├── 📄 part-0053.part
+│       ├── 📄 part-0054.part
+│       ├── 📄 part-0055.part
+│       ├── 📄 part-0056.part
+│       ├── 📄 part-0057.part
+│       ├── 📄 part-0058.part
+│       ├── 📄 part-0059.part
+│       ├── 📄 part-0060.part
+│       ├── 📄 part-0061.part
+│       ├── 📄 part-0062.part
+│       ├── 📄 part-0063.part
+│       ├── 📄 part-0064.part
+│       ├── 📄 part-0065.part
+│       ├── 📄 part-0066.part
+│       ├── 📄 part-0067.part
+│       ├── 📄 part-0068.part
+│       ├── 📄 part-0069.part
+│       ├── 📄 part-0070.part
+│       ├── 📄 part-0071.part
+│       ├── 📄 part-0072.part
+│       ├── 📄 part-0073.part
+│       ├── 📄 part-0074.part
+│       ├── 📄 part-0075.part
+│       ├── 📄 part-0076.part
+│       ├── 📄 part-0077.part
+│       ├── 📄 part-0078.part
+│       ├── 📄 part-0079.part
+│       ├── 📄 part-0080.part
+│       ├── 📄 part-0081.part
+│       ├── 📄 part-0082.part
+│       ├── 📄 part-0083.part
+│       ├── 📄 part-0084.part
+│       ├── 📄 part-0085.part
+│       ├── 📄 part-0086.part
+│       ├── 📄 part-0087.part
+│       ├── 📄 part-0088.part
+│       ├── 📄 part-0089.part
+│       ├── 📄 part-0090.part
+│       ├── 📄 part-0091.part
+│       ├── 📄 part-0092.part
+│       ├── 📄 part-0093.part
+│       ├── 📄 part-0094.part
+│       ├── 📄 part-0095.part
+│       ├── 📄 part-0096.part
+│       ├── 📄 part-0097.part
+│       ├── 📄 part-0098.part
+│       ├── 📄 part-0099.part
+│       ├── 📄 part-0100.part
+│       ├── 📄 part-0101.part
+│       ├── 📄 part-0102.part
+│       ├── 📄 part-0103.part
+│       ├── 📄 part-0104.part
+│       ├── 📄 part-0105.part
+│       ├── 📄 part-0106.part
+│       ├── 📄 part-0107.part
+│       ├── 📄 part-0108.part
+│       ├── 📄 part-0109.part
+│       ├── 📄 part-0110.part
+│       ├── 📄 part-0111.part
+│       ├── 📄 part-0112.part
+│       ├── 📄 part-0113.part
+│       ├── 📄 part-0114.part
+│       ├── 📄 part-0115.part
+│       ├── 📄 part-0116.part
+│       ├── 📄 part-0117.part
+│       ├── 📄 part-0118.part
+│       ├── 📄 part-0119.part
+│       ├── 📄 part-0120.part
+│       ├── 📄 part-0121.part
+│       ├── 📄 part-0122.part
+│       ├── 📄 part-0123.part
+│       ├── 📄 part-0124.part
+│       ├── 📄 part-0125.part
+│       ├── 📄 part-0126.part
+│       ├── 📄 part-0127.part
+│       ├── 📄 part-0128.part
+│       ├── 📄 part-0129.part
+│       ├── 📄 part-0130.part
+│       ├── 📄 part-0131.part
+│       ├── 📄 part-0132.part
+│       ├── 📄 part-0133.part
+│       ├── 📄 part-0134.part
+│       ├── 📄 part-0135.part
+│       ├── 📄 part-0136.part
+│       ├── 📄 part-0137.part
+│       ├── 📄 part-0138.part
+│       ├── 📄 part-0139.part
+│       ├── 📄 part-0140.part
+│       ├── 📄 part-0141.part
+│       ├── 📄 part-0142.part
+│       ├── 📄 part-0143.part
+│       └── 📄 part-0144.part
+├── 📁 components
+│   ├── 📄 AdminDashboard.tsx
+│   ├── 📄 AffiliateFlier.tsx
+│   ├── 📄 AffiliatePrice.tsx
+│   ├── 📄 AffiliatesDashboard.tsx
+│   ├── 📄 AffiliateSetup.tsx
+│   ├── 📄 AffiliateSignIn.tsx
+│   ├── 📄 AffiliateSupport.tsx
+│   ├── 📄 AppDiagnostics.tsx
+│   ├── 📄 BasicIncludesModal.tsx
+│   ├── 📄 BodyMap.tsx
+│   ├── 📄 BodyMapArt.tsx
+│   ├── 📄 bookCatalog.ts
+│   ├── 📄 BottomNav.tsx
+│   ├── 📄 CaptureTips.tsx
+│   ├── 📄 CheckoutModal.tsx
+│   ├── 📄 ContactSender.tsx
+│   ├── 📄 CoverCards.tsx
+│   ├── 📄 CreatorTeaser.tsx
+│   ├── 📄 DemoCycles.tsx
+│   ├── 📄 DiscountPrice.tsx
+│   ├── 📄 FlierAutoPrint.tsx
+│   ├── 📄 FullIncludesModal.tsx
+│   ├── 📄 Galaxy.tsx
+│   ├── 📄 GalaxyMenu.tsx
+│   ├── 📄 gaze.ts
+│   ├── 📄 GiftModals.tsx
+│   ├── 📄 heroColor.ts
+│   ├── 📄 HomeScene.tsx
+│   ├── 📄 HowItWasMade.tsx
+│   ├── 📄 HowModal.tsx
+│   ├── 📄 InstallFooter.tsx
+│   ├── 📄 InstallToast.tsx
+│   ├── 📄 IrisApp.tsx
+│   ├── 📄 IrisFlip.tsx
+│   ├── 📄 IrisIllustration.tsx
+│   ├── 📄 JoinTeam.tsx
+│   ├── 📄 LogoEye.tsx
+│   ├── 📄 PalmPromo.tsx
+│   ├── 📄 PlotPhoto.tsx
+│   ├── 📄 postArt.ts
+│   ├── 📄 PurchaseReveal.tsx
+│   ├── 📄 ReadingsList.tsx
+│   ├── 📄 ReferralCapture.tsx
+│   ├── 📄 RegionBadge.tsx
+│   ├── 📄 ReportView.tsx
+│   ├── 📄 RevealSlides.tsx
+│   ├── 📄 Reviews.tsx
+│   ├── 📄 ScrollFx.tsx
+│   ├── 📄 SellingGuide.tsx
+│   ├── 📄 ShareButtons.tsx
+│   ├── 📄 ShareToolbox.tsx
+│   ├── 📄 SignGuide.tsx
+│   ├── 📄 StageOverlay.tsx
+│   ├── 📄 SubscriptionLanding.tsx
+│   ├── 📄 SubscriptionOffer.tsx
+│   ├── 📄 SupporterGiftPanels.tsx
+│   ├── 📄 TaosWalker.tsx
+│   ├── 📄 TeamPwaSetup.tsx
+│   ├── 📄 UnlockModal.tsx
+│   └── 📄 UnlockRemindButton.tsx
+├── 📁 lib
+│   ├── 📄 admin.ts
+│   ├── 📄 affiliates-client.ts
+│   ├── 📄 affiliates.ts
+│   ├── 📄 auth.ts
+│   ├── 📄 autoread.ts
+│   ├── 📄 books.ts
+│   ├── 📄 build-stamp.ts
+│   ├── 📄 capture.ts
+│   ├── 📄 chart.ts
+│   ├── 📄 compare.ts
+│   ├── 📄 db.ts
+│   ├── 📄 diet.ts
+│   ├── 📄 example.ts
+│   ├── 📄 gifts.ts
+│   ├── 📄 person.ts
+│   ├── 📄 pricing.ts
+│   ├── 📄 push.ts
+│   ├── 📄 pushClient.ts
+│   ├── 📄 refmark.ts
+│   ├── 📄 refmarkImage.ts
+│   ├── 📄 reviews.ts
+│   ├── 📄 shared.ts
+│   ├── 📄 stripe.ts
+│   ├── 📄 subscriptions.ts
+│   ├── 📄 subscriptionTerms.ts
+│   └── 📄 supporterGifts.ts
+├── 📁 public
+│   ├── 📁 book-covers
+│   │   ├── 📄 dope-sick.jpg
+│   │   ├── 📄 ground-we-stand-on.jpg
+│   │   └── 📄 trouble-with-english.jpg
+│   ├── 📁 diet
+│   │   ├── 📄 berries.jpg
+│   │   ├── 📄 citrus.jpg
+│   │   ├── 📄 greens.jpg
+│   │   └── 📄 spread.jpg
+│   ├── 📁 includes
+│   │   ├── 📄 basic-bodymap.jpg
+│   │   ├── 📄 basic-findings.jpg
+│   │   ├── 📄 basic-overview.jpg
+│   │   └── 📄 full-diet.jpg
+│   ├── 📁 share-art
+│   │   ├── 📄 bodymap.jpg
+│   │   ├── 📄 books.jpg
+│   │   ├── 📄 constitution.jpg
+│   │   ├── 📄 diet.jpg
+│   │   ├── 📄 freescans.jpg
+│   │   ├── 📄 gift.jpg
+│   │   ├── 📄 preview.jpg
+│   │   ├── 📄 reading.jpg
+│   │   ├── 📄 subscription.jpg
+│   │   └── 📄 timeline.jpg
+│   ├── 📄 apple-touch-icon.png
+│   ├── 📄 creator-portrait.jpg
+│   ├── 📄 demo-iris-blue.jpg
+│   ├── 📄 demo-iris-gold.jpg
+│   ├── 📄 demo-iris-green.jpg
+│   ├── 📄 demo-iris-grey.jpg
+│   ├── 📄 demo-iris-violet.jpg
+│   ├── 📄 demo-iris.jpg
+│   ├── 📄 icon-192.png
+│   ├── 📄 icon-512.png
+│   ├── 📄 icon-maskable-512.png
+│   ├── 📄 icon.svg
+│   ├── 📄 iridology-chart.jpg
+│   ├── 📄 logo.svg
+│   ├── 📄 manifest.webmanifest
+│   ├── 📄 palm-slide-1.jpg
+│   ├── 📄 palm-slide-2.jpg
+│   ├── 📄 palm-slide-3.jpg
+│   ├── 📄 palm-slide-4.jpg
+│   ├── 📄 palm-slide-5.jpg
+│   ├── 📄 palm-slide-6.jpg
+│   ├── 📄 sw.js
+│   ├── 📄 team-sw.js
+│   └── 📄 team.webmanifest
+├── 📁 scripts
+│   └── 📄 stamp-version.js
+├── 📁 test-images
+│   ├── 📄 iris-test-blue.png
+│   ├── 📄 iris-test.png
+│   └── 📄 real-eye-1.jpg
+├── 📄 DOMAIN-OPTIONS.md
+├── 📄 LAUNCH-STEPS.md
+├── 📄 middleware.ts
+├── 📄 next-env.d.ts
+├── 📄 next.config.mjs
+├── 📄 package-lock.json
+├── 📄 package.json
+├── 📄 tsconfig.json
+└── 📄 vercel.json
+
+✨ Download and verification complete!
+📄 Full log saved to: /data/data/com.termux/files/home/out/dpl_8RFwWMY89XTpG8VNDNjtetff5yzE/download-log.txt
+   (Use --verbose to see file tree and skipped files)
+
