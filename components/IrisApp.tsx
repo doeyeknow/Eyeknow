@@ -342,41 +342,8 @@ export default function IrisApp() {
   const streamRef = useRef<MediaStream | null>(null);
   const fileRef = useRef<HTMLInputElement | null>(null);
   const timersRef = useRef<number[]>([]);
-const nativeCaptureBusyRef = useRef(false);
+  const nativeCaptureBusyRef = useRef(false);
 
-async function openEyeCamera() {
-  if (nativeCaptureBusyRef.current) return;
-
-  // Keep your existing browser experience outside Android.
-  if (!hasNativeEyeCapture()) {
-    await startCamera(camMode);
-    return;
-  }
-
-  nativeCaptureBusyRef.current = true;
-  setCamError(null);
-
-  try {
-    stopCamera();
-
-    const capture = await requestNativeEyeCapture(eye);
-    if (!capture) return;
-
-    await runRead(
-      capture.display,
-      capture.analysis,
-      capture.stackedFrames,
-    );
-  } catch (error) {
-    setCamError(
-      error instanceof Error
-        ? error.message
-        : "Could not capture the eye. Please try again.",
-    );
-  } finally {
-    nativeCaptureBusyRef.current = false;
-  }
-}
   // "Install app": the browser's own prompt, when offered. The
   // layout head script catches an offer fired before hydration and
   // stashes it on window.__eyeknowBIP; adopt it, then keep listening.
@@ -1198,74 +1165,40 @@ async function openEyeCamera() {
     },
     [stopCamera],
   );
-async function openEyeCamera() {
-  if (nativeCaptureBusyRef.current) return;
+  async function openEyeCamera() {
+    if (nativeCaptureBusyRef.current) return;
 
-  // Use the existing browser camera outside the Android app.
-  if (!hasNativeEyeCapture()) {
-    await startCamera(camMode);
-    return;
+    // Use the existing browser camera outside the Android app.
+    if (!hasNativeEyeCapture()) {
+      await startCamera(camMode);
+      return;
+    }
+
+    nativeCaptureBusyRef.current = true;
+    setCamError(null);
+
+    try {
+      stopCamera();
+
+      const capture = await requestNativeEyeCapture(eye);
+      if (!capture) return;
+
+      await runRead(
+        capture.display,
+        capture.analysis,
+        capture.stackedFrames,
+      );
+    } catch (error) {
+      setCamError(
+        error instanceof Error
+          ? error.message
+          : "Could not capture the eye. Please try again.",
+      );
+    } finally {
+      nativeCaptureBusyRef.current = false;
+    }
   }
 
-  nativeCaptureBusyRef.current = true;
-  setCamError(null);
-
-  try {
-    stopCamera();
-
-    const capture = await requestNativeEyeCapture(eye);
-    if (!capture) return;
-
-    await runRead(
-      capture.display,
-      capture.analysis,
-      capture.stackedFrames,
-    );
-  } catch (error) {
-    setCamError(
-      error instanceof Error
-        ? error.message
-        : "Could not capture the eye. Please try again.",
-    );
-  } finally {
-    nativeCaptureBusyRef.current = false;
-  }
-}
-
-// Keep your existing function below this.
-async function openEyeCamera() {
-  if (nativeCaptureBusyRef.current) return;
-
-  // Use the existing browser camera outside the Android app.
-  if (!hasNativeEyeCapture()) {
-    await startCamera(camMode);
-    return;
-  }
-
-  nativeCaptureBusyRef.current = true;
-  setCamError(null);
-
-  try {
-    stopCamera();
-
-    const capture = await requestNativeEyeCapture(eye);
-    if (!capture) return;
-
-    await runRead(
-      capture.display,
-      capture.analysis,
-      capture.stackedFrames,
-    );
-  } catch (error) {
-    setCamError(
-      error instanceof Error
-        ? error.message
-        : "Could not capture the eye. Please try again.",
-    );
-  } finally {
-    nativeCaptureBusyRef.current = false;
-  }
-}
 
   async function snapPhoto() {
     const video = videoRef.current;
