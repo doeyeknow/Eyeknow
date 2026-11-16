@@ -5,6 +5,7 @@
 // both the web and native-app flows, so the gate sits before capture
 // starts without touching IrisApp (at the deploy cap).
 import EmailGate from "./EmailGate";
+import AppDownloadLink from "./AppDownloadLink";
 
 export default function CaptureTips() {
   return (
@@ -38,6 +39,7 @@ export default function CaptureTips() {
           <b>Wipe the lens first</b> — a smudged lens softens everything.
         </li>
       </ul>
+      <AppDownloadLink />
     </div>
     </>
   );
