@@ -7,6 +7,9 @@ const nextConfig = {
     // them so it can reassemble and stream the originals.
     outputFileTracingIncludes: {
       "/api/books/download": ["./books/**/*.part"],
+      // The native APK served (stamped per referral) by the
+      // app download endpoint — same bundle-inclusion need.
+      "/api/app/download": ["./app-binary/eyeknow.apk"],
     },
   },
 };
