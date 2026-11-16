@@ -116,3 +116,39 @@ export async function unlockSharedScan(scanId: string): Promise<void> {
   );
   await unlockPersonForScan(scanId);
 }
+
+/** Copy a shared reading into an account (the claim). Idempotent:
+ *  re-claiming merges the unlock/basic flags (OR) and keeps the
+ *  earliest unlock time; the stored payload refreshes. The claim
+ *  route and the offer-link redeem route share this — one claim
+ *  path, one merge rule. */
+export async function claimSharedScanToAccount(userId: string, shared: ScanRecord): Promise<void> {
+  await ensureSchema();
+  // The basic flag comes along too (it was dropped before, so a
+  // claimed basic reading looked locked in the account — and the
+  // first-basic $1 offer's once-per-account check reads it here).
+  await query(
+    `INSERT INTO iris_scans (user_id, scan_id, created_at, data, unlocked, unlocked_at, basic)
+     VALUES ($1, $2, $3, $4, $5, CASE WHEN $5 THEN now() ELSE NULL END, $6)
+     ON CONFLICT (user_id, scan_id) DO UPDATE
+       SET unlocked = iris_scans.unlocked OR EXCLUDED.unlocked,
+           unlocked_at = COALESCE(iris_scans.unlocked_at, EXCLUDED.unlocked_at),
+           basic = iris_scans.basic OR EXCLUDED.basic`,
+    [userId, shared.id, shared.createdAt, JSON.stringify(shared), Boolean(shared.unlocked), Boolean(shared.basic)],
+  );
+}
+
+/** Fetch a shared reading by id WITHOUT a token check. The caller
+ *  must have authorized access another way — the redeem route uses
+ *  the offer-link token, which proves inbox access. Never expose
+ *  this behind a bare scan id. */
+export async function getSharedScanById(scanId: string): Promise<ScanRecord | null> {
+  if (!scanId) return null;
+  await ensureSchema();
+  const rows = await query<{ data: ScanRecord; unlocked: boolean; basic: boolean }>(
+    `SELECT data, unlocked, basic FROM iris_shared_scans WHERE scan_id = $1`,
+    [scanId],
+  );
+  if (!rows.length) return null;
+  return { ...rows[0].data, unlocked: rows[0].unlocked, basic: rows[0].basic };
+}

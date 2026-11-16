@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionUser } from "@/lib/auth";
-import { dbConfigured, ensureSchema, query } from "@/lib/db";
-import { getSharedScan } from "@/lib/shared";
+import { dbConfigured, ensureSchema } from "@/lib/db";
+import { claimSharedScanToAccount, getSharedScan } from "@/lib/shared";
 
 export const dynamic = "force-dynamic";
 
@@ -19,17 +19,6 @@ export async function POST(req: NextRequest) {
   const shared = await getSharedScan(body?.scanId ?? "", body?.accessToken ?? "");
   if (!shared) return NextResponse.json({ error: "reading not found" }, { status: 404 });
   await ensureSchema();
-  // The basic flag comes along too (it was dropped before, so a
-  // claimed basic reading looked locked in the account — and the
-  // first-basic $1 offer's once-per-account check reads it here).
-  await query(
-    `INSERT INTO iris_scans (user_id, scan_id, created_at, data, unlocked, unlocked_at, basic)
-     VALUES ($1, $2, $3, $4, $5, CASE WHEN $5 THEN now() ELSE NULL END, $6)
-     ON CONFLICT (user_id, scan_id) DO UPDATE
-       SET unlocked = iris_scans.unlocked OR EXCLUDED.unlocked,
-           unlocked_at = COALESCE(iris_scans.unlocked_at, EXCLUDED.unlocked_at),
-           basic = iris_scans.basic OR EXCLUDED.basic`,
-    [user.id, shared.id, shared.createdAt, JSON.stringify(shared), Boolean(shared.unlocked), Boolean(shared.basic)],
-  );
+  await claimSharedScanToAccount(user.id, shared);
   return NextResponse.json({ ok: true, unlocked: Boolean(shared.unlocked) });
 }

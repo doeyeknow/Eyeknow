@@ -1,8 +1,15 @@
 // Photo tips shown on the capture step — a clear photo is the single
 // biggest factor in a good reading, so the advice lives where the
-// photo is taken, not buried in help text.
+// photo is taken, not buried in help text. The first-scan email gate
+// rides along here: this component renders on the capture step for
+// both the web and native-app flows, so the gate sits before capture
+// starts without touching IrisApp (at the deploy cap).
+import EmailGate from "./EmailGate";
+
 export default function CaptureTips() {
   return (
+    <>
+      <EmailGate />
     <div className="capture-tips">
       <h3>Tips for a clear photo</h3>
       <ul>
@@ -32,5 +39,6 @@ export default function CaptureTips() {
         </li>
       </ul>
     </div>
+    </>
   );
 }

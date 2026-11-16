@@ -1,12 +1,29 @@
 // First-basic $1 offer (Adam, 2026-11-15): someone scans an iris
-// and leaves the reading locked. One hour later — if they opted
-// into notifications — one push notification offers their FIRST
-// basic reading for $1 instead of $3. The offer is one time per
-// account, priced server-side at every step that can charge, and
-// carries ZERO referral credit (Adam, 2026-11-15 23:01, explicit:
-// the $1 unlock pays nothing to the referral — enforced here by
-// routing the sale through the basic path, which the webhook never
-// credits, exactly like the $3 basic).
+// and leaves the reading locked. The funnel runs in TWO stages
+// (Adam, 2026-11-15 23:51): the $1 offer goes out ONLY if they went
+// through the reveal and did not unlock at $3.
+//
+//  - STAGE 1 — the reveal prompt: on exit without unlocking, a
+//    push reminder (if armed) and an email (if an address is on
+//    file) point back to the reading. NO $1 mention anywhere, and
+//    NO offer row is created — the $1 price must not exist yet.
+//  - THE REVEAL: the signed email link asks them to set a password
+//    (new account) or sign in (existing account), then lands on the
+//    reading. Completing that flow sets the reveal flag — viewing
+//    the reading in-app without the email link does NOT set it.
+//  - STAGE 2 — the $1 offer: only when the reveal flag is set, the
+//    reading is still locked, and no $3 basic unlock happened. On
+//    exit after the reveal, push (if armed) AND email (if given)
+//    carry the $1 offer, each at most once per scan, and the offer
+//    row is created at THAT send — the row is what makes the $1
+//    price real. An hourly sweep backstops missed exits at both
+//    stages with the same gating and dedupe.
+//
+// The offer is one time per account, priced server-side at every
+// step that can charge, and carries ZERO referral credit (Adam,
+// 2026-11-15 23:01, explicit: the $1 unlock pays nothing to the
+// referral — enforced here by routing the sale through the basic
+// path, which the webhook never credits, exactly like the $3 basic).
 //
 // Rules, all enforced server-side:
 //  - Eligibility: the scan carries a live offer row (created when
@@ -204,4 +221,33 @@ export async function validateOfferSession(
   const row = await getOfferRow(scanId);
   if (!row) return false;
   return claimOfferRedemption(scanId, stripeSessionId);
+}
+
+/** The reveal flag (Adam, 2026-11-15 23:51): the ms timestamp when
+ *  the person completed the email-link reveal for a scan, or null
+ *  when they never have. Set ONLY by the email-link flow (the
+ *  /reading/[token] page and the redeem route) — viewing the reading
+ *  in-app without the email link never sets it. Stage-2 sends
+ *  require this flag; stage-1 sends require its absence. Lives here
+ *  (not in the push or email modules) so both send paths can read
+ *  it without an import cycle. */
+export async function getRevealAt(scanId: string): Promise<number | null> {
+  await ensureSchema();
+  const rows = await query<{ revealed_at: number }>(
+    `SELECT revealed_at FROM iris_scan_reveals WHERE scan_id = $1`,
+    [scanId],
+  );
+  if (!rows[0]) return null;
+  // pg returns BIGINT as a string — coerce, like the offer row.
+  return Number(rows[0].revealed_at);
+}
+
+/** Record that the email-link reveal completed for a scan. First
+ *  completion wins; later completions leave the original time. */
+export async function markRevealCompleted(scanId: string, now: number = Date.now()): Promise<void> {
+  await ensureSchema();
+  await query(
+    `INSERT INTO iris_scan_reveals (scan_id, revealed_at) VALUES ($1, $2) ON CONFLICT (scan_id) DO NOTHING`,
+    [scanId, now],
+  );
 }

@@ -9,6 +9,8 @@ import IrisFlip from "./IrisFlip";
 import AffPrice from "./AffiliatePrice";
 import UnlockPrice from "./DiscountPrice";
 import BasicPrice, { FirstBasicOfferNote } from "./FirstBasicOffer";
+import ExitPromptBeacon from "./ExitPromptBeacon";
+import OfferEmailCapture from "./OfferEmailCapture";
 import SignGuideModal from "./SignGuide";
 import { buildDiet } from "@/lib/diet";
 import QRCode from "qrcode";
@@ -414,6 +416,9 @@ export default function ReportView({
                   {unlockBusy ? "Opening checkout…" : <>Unlock the basic reading — <BasicPrice scanId={scan.id} accessToken={scan.accessToken} /></>}
                 </button>
                 <FirstBasicOfferNote scanId={scan.id} accessToken={scan.accessToken} />
+                {!example && (
+                  <OfferEmailCapture scanId={scan.id} accessToken={scan.accessToken} />
+                )}
                 <button type="button" className="btn ghost" onClick={onUnlock} disabled={unlockBusy} style={{ marginTop: 10 }}>
                   {unlockBusy ? "Opening checkout…" : <>Or unlock the full reading — <UnlockPrice scanId={scan.id} accessToken={scan.accessToken} followup={followupPrice} /></>}
                 </button>
@@ -645,6 +650,18 @@ export default function ReportView({
 
   return (
     <div className="report-wrap" ref={wrapRef}>
+      {/* Exit-triggered funnel sends (Adam, 2026-11-15 23:42 +
+          23:51): leaving a reading locked at the basic tier reports
+          the exit so the server can send whichever stage applies —
+          the reveal prompt before the reveal, the $1 offer after
+          it. Renders nothing; the server re-checks locked/stage/
+          eligibility/dedupe at send time. */}
+      <ExitPromptBeacon
+        scanId={scan.id}
+        accessToken={scan.accessToken}
+        shouldSend={locked && !basic && !example}
+        suppress={unlockBusy}
+      />
       {/* Share row (Adam, 2026-11-05): the buttons live HERE in the
           report, not only in the page footer where nobody finds
           them. The footer row stays as well; shareUrl also drives

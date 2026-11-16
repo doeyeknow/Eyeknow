@@ -292,7 +292,34 @@ export function ensureSchema(): Promise<void> {
       // offer_sent_at on the reminder row dedupes the notification
       // itself: NULL = undecided, -1 = decided never to send
       // (settled or expired scan), >0 = sent at that ms timestamp.
+      // Two-stage gating (Adam, 2026-11-15 23:51): the $1 offer goes
+      // out ONLY after the person completed the email-link reveal.
+      // reveal_sent_at dedupes the stage-1 reveal prompt (same
+      // NULL/-1/timestamp semantics, one flag per stage per device);
+      // iris_offer_emails carries the same two flags for the email
+      // channel plus the address itself; iris_offer_link_tokens
+      // stores SHA-256 hashes of the signed reveal-link tokens (the
+      // shared-reading access-token pattern — only hashes persist);
+      // iris_scan_reveals records the reveal itself, set ONLY by the
+      // email-link flow completing.
       await query(`ALTER TABLE iris_unlock_reminders ADD COLUMN IF NOT EXISTS offer_sent_at BIGINT`);
+      await query(`ALTER TABLE iris_unlock_reminders ADD COLUMN IF NOT EXISTS reveal_sent_at BIGINT`);
+      await query(`CREATE TABLE IF NOT EXISTS iris_offer_emails (
+        scan_id TEXT PRIMARY KEY,
+        email TEXT NOT NULL,
+        reveal_sent_at BIGINT,
+        email_sent_at BIGINT,
+        updated_at BIGINT NOT NULL
+      )`);
+      await query(`CREATE TABLE IF NOT EXISTS iris_offer_link_tokens (
+        token_hash TEXT PRIMARY KEY,
+        scan_id TEXT NOT NULL,
+        created_at BIGINT NOT NULL
+      )`);
+      await query(`CREATE TABLE IF NOT EXISTS iris_scan_reveals (
+        scan_id TEXT PRIMARY KEY,
+        revealed_at BIGINT NOT NULL
+      )`);
       await query(`CREATE TABLE IF NOT EXISTS iris_first_basic_offers (
         scan_id TEXT PRIMARY KEY,
         user_id UUID REFERENCES iris_users(id) ON DELETE SET NULL,

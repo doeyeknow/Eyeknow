@@ -1,6 +1,13 @@
 import webpush from "web-push";
 import { ensureSchema, query } from "./db";
-import { createOfferForScan, OFFER_DELAY_MS, OFFER_WINDOW_MS } from "./firstBasicOffer";
+import {
+  accountHasBasicUnlock,
+  createOfferForScan,
+  getRevealAt,
+  OFFER_DELAY_MS,
+  OFFER_WINDOW_MS,
+  sharedScanIsBasic,
+} from "./firstBasicOffer";
 
 // Unlock-reminder Web Push (Adam, 2026-11-05): someone scans an iris,
 // leaves the reading locked, and — if they opted into notifications —
@@ -81,8 +88,9 @@ export async function saveSubscription(
 /** Has this person's reading been unlocked (full or basic) anywhere
  *  it is stored? Mirrors the person rule used by getSharedScan:
  *  a scan counts as settled when it, its person root, or any scan
- *  carrying its person id is unlocked or basic, in either table. */
-async function personSettled(scanId: string): Promise<boolean> {
+ *  carrying its person id is unlocked or basic, in either table.
+ *  Exported: the offer-email module applies the same check. */
+export async function personSettled(scanId: string): Promise<boolean> {
   const roots = await query<{ pid: string }>(
     `SELECT COALESCE(data->>'personId', scan_id) AS pid FROM iris_scans WHERE scan_id = $1
      UNION ALL
@@ -175,14 +183,17 @@ export async function runUnlockReminders(): Promise<{ sent: number; cleared: num
 interface OfferRow {
   endpoint: string;
   scan_id: string;
+  reveal_sent_at: number | null;
+  offer_sent_at: number | null;
   p256dh: string;
   auth: string;
   user_id: string | null;
 }
 
 /** The scan's own creation time (ms epoch), from either store.
- *  Null when the scan is gone from both. */
-async function scanCreatedAt(scanId: string): Promise<number | null> {
+ *  Null when the scan is gone from both. Exported: the offer-email
+ *  module and the redeem route use the same lookup. */
+export async function scanCreatedAt(scanId: string): Promise<number | null> {
   const rows = await query<{ created_at: number }>(
     `SELECT created_at FROM iris_scans WHERE scan_id = $1
      UNION ALL
@@ -195,6 +206,16 @@ async function scanCreatedAt(scanId: string): Promise<number | null> {
   return rows.length ? Number(rows[0].created_at) : null;
 }
 
+/** Mark a reminder row's stage-1 (reveal prompt) decision: -1 =
+ *  never send (moot, settled, or expired), or a timestamp = sent
+ *  at. Same semantics as the offer flag, one flag per stage. */
+async function markRevealDecision(endpoint: string, scanId: string, value: number): Promise<void> {
+  await query(
+    `UPDATE iris_unlock_reminders SET reveal_sent_at = $3 WHERE endpoint = $1 AND scan_id = $2`,
+    [endpoint, scanId, value],
+  );
+}
+
 /** Mark a reminder row's offer decision: -1 = never send (settled
  *  or expired scan), or a timestamp = sent at. */
 async function markOfferDecision(endpoint: string, scanId: string, value: number): Promise<void> {
@@ -204,63 +225,243 @@ async function markOfferDecision(endpoint: string, scanId: string, value: number
   );
 }
 
-/** Send the first-basic $1 offer, once per (device, scan), one hour
- *  after a scan that stays locked. The offer row is created only
- *  when a notification actually goes out — the row is what checkout
- *  prices from, so no notification means no $1 price. Scans older
- *  than the 7-day window never get the offer. Copy names the offer
- *  plainly and states the real window; no urgency tricks. Dead
+/** Close out both stage decisions as never — used when the scan is
+ *  settled or past its window. COALESCE keeps a flag that already
+ *  records a send; only undecided flags become -1. */
+async function markBothNever(endpoint: string, scanId: string): Promise<void> {
+  await query(
+    `UPDATE iris_unlock_reminders
+     SET reveal_sent_at = COALESCE(reveal_sent_at, -1), offer_sent_at = COALESCE(offer_sent_at, -1)
+     WHERE endpoint = $1 AND scan_id = $2`,
+    [endpoint, scanId],
+  );
+}
+
+/** Close out the stage-1 decision as moot when it is still
+ *  undecided — the reveal already happened, so the prompt that
+ *  leads to it is pointless. A recorded send is left alone. */
+async function closeRevealIfUndecided(endpoint: string, scanId: string): Promise<void> {
+  await query(
+    `UPDATE iris_unlock_reminders SET reveal_sent_at = COALESCE(reveal_sent_at, -1) WHERE endpoint = $1 AND scan_id = $2`,
+    [endpoint, scanId],
+  );
+}
+
+/** Is this row's account (or shared person) still eligible for a
+ *  FIRST basic? An account that already holds a basic anywhere
+ *  never gets the $1 notification — it would promise a price
+ *  checkout cannot give. The decision is permanent: once a basic
+ *  exists, eligibility never comes back. Shared by the sweep and
+ *  the exit trigger so both stages gate identically. */
+async function rowEligible(r: OfferRow): Promise<boolean> {
+  const ineligible = r.user_id
+    ? await accountHasBasicUnlock(r.user_id)
+    : await sharedScanIsBasic(r.scan_id);
+  return !ineligible;
+}
+
+/** One stage-1 (reveal prompt) push for one (device, scan) row: a
+ *  reminder that points back to the reading. NO $1 mention
+ *  anywhere and NO offer row — the offer does not exist until the
+ *  person completes the reveal. Returns "sent", "gone" (dead
+ *  subscription — rows removed), or "failed" (leave the row
+ *  undecided so a later run retries). */
+async function attemptRevealSend(
+  wp: typeof webpush,
+  r: OfferRow,
+  now: number,
+): Promise<"sent" | "gone" | "failed"> {
+  try {
+    await wp.sendNotification(
+      { endpoint: r.endpoint, keys: { p256dh: r.p256dh, auth: r.auth } },
+      JSON.stringify({
+        title: "Your eyeKnow reading is ready 👁️",
+        body: "Your iris reading is saved and waiting — open it to see what your eyes show.",
+        url: `/?scan=${encodeURIComponent(r.scan_id)}`,
+      }),
+    );
+    await markRevealDecision(r.endpoint, r.scan_id, now);
+    return "sent";
+  } catch (e) {
+    const status = (e as { statusCode?: number }).statusCode;
+    if (status === 404 || status === 410) {
+      await query(`DELETE FROM iris_unlock_reminders WHERE endpoint = $1`, [r.endpoint]);
+      await query(`DELETE FROM iris_push_subscriptions WHERE endpoint = $1`, [r.endpoint]);
+      return "gone";
+    }
+    return "failed";
+  }
+}
+
+/** One stage-2 ($1 offer) notification attempt for one (device,
+ *  scan) row: send the push, create the offer row, and mark the
+ *  decision. Returns "sent", "gone" (dead subscription — rows
+ *  removed), or "failed" (leave the row undecided so a later run
+ *  retries). Shared by the hourly sweep and the exit trigger: one
+ *  send path, one copy, one dedupe flag. The offer row is created
+ *  ONLY here (and in the email stage-2 send) — never before the
+ *  reveal, never by the stage-1 prompt. */
+async function attemptOfferSend(
+  wp: typeof webpush,
+  r: OfferRow,
+  created: number,
+  now: number,
+): Promise<"sent" | "gone" | "failed"> {
+  try {
+    await wp.sendNotification(
+      { endpoint: r.endpoint, keys: { p256dh: r.p256dh, auth: r.auth } },
+      JSON.stringify({
+        title: "Your first basic reading is $1 👁️",
+        body: "Your iris reading is still locked. Your first basic reading — your top signs in full, with the body map — is $1. The offer lasts 7 days from your scan.",
+        url: `/?scan=${encodeURIComponent(r.scan_id)}`,
+      }),
+    );
+    await createOfferForScan(r.scan_id, r.user_id, created, now);
+    await markOfferDecision(r.endpoint, r.scan_id, now);
+    return "sent";
+  } catch (e) {
+    const status = (e as { statusCode?: number }).statusCode;
+    if (status === 404 || status === 410) {
+      await query(`DELETE FROM iris_unlock_reminders WHERE endpoint = $1`, [r.endpoint]);
+      await query(`DELETE FROM iris_push_subscriptions WHERE endpoint = $1`, [r.endpoint]);
+      return "gone";
+    }
+    return "failed";
+  }
+}
+
+/** Send whichever push stage applies to one (device, scan) row,
+ *  given the scan is locked, in-window, and due. Before the reveal
+ *  flag: the stage-1 prompt (once — a recorded stage-1 send waits
+ *  silently for the reveal). After it: the stage-1 decision closes
+ *  as moot when undecided, and the $1 offer stage runs only when
+ *  the account is still eligible. Returns the outcome for the
+ *  caller's counts; "skipped" covers already-sent and ineligible. */
+async function attemptStagePushSend(
+  wp: typeof webpush,
+  r: OfferRow,
+  created: number,
+  now: number,
+  revealed: boolean,
+): Promise<"reveal" | "offer" | "gone" | "failed" | "skipped"> {
+  if (!revealed) {
+    if (r.reveal_sent_at !== null) return "skipped";
+    const outcome = await attemptRevealSend(wp, r, now);
+    if (outcome === "sent") return "reveal";
+    return outcome;
+  }
+  await closeRevealIfUndecided(r.endpoint, r.scan_id);
+  if (r.offer_sent_at !== null) return "skipped";
+  if (!(await rowEligible(r))) {
+    await markOfferDecision(r.endpoint, r.scan_id, -1);
+    return "skipped";
+  }
+  const outcome = await attemptOfferSend(wp, r, created, now);
+  if (outcome === "sent") return "offer";
+  return outcome;
+}
+
+/** Sweep backstop for the two-stage funnel (push channel): stage-1
+ *  reveal prompts for locked scans with no reveal, stage-2 $1
+ *  offers for revealed-but-locked scans — each once per (device,
+ *  scan), starting one hour after the scan. The offer row is
+ *  created only when a stage-2 notification actually goes out —
+ *  the row is what checkout prices from, so no notification means
+ *  no $1 price, and the stage-1 prompt never creates one. Scans
+ *  older than the 7-day window never get either stage. Dead
  *  subscriptions are removed with their reminders, as above. */
-export async function runFirstBasicOffers(): Promise<{ sent: number; skipped: number; gone: number }> {
+export async function runFirstBasicOffers(): Promise<{
+  revealSent: number;
+  offerSent: number;
+  skipped: number;
+  gone: number;
+}> {
   const wp = client();
-  if (!wp) return { sent: 0, skipped: 0, gone: 0 };
+  if (!wp) return { revealSent: 0, offerSent: 0, skipped: 0, gone: 0 };
   await ensureSchema();
   const now = Date.now();
   const due = await query<OfferRow>(
-    `SELECT r.endpoint, r.scan_id, s.p256dh, s.auth, s.user_id
+    `SELECT r.endpoint, r.scan_id, r.reveal_sent_at, r.offer_sent_at, s.p256dh, s.auth, s.user_id
      FROM iris_unlock_reminders r
      JOIN iris_push_subscriptions s ON s.endpoint = r.endpoint
-     WHERE r.offer_sent_at IS NULL
+     WHERE r.reveal_sent_at IS NULL OR r.offer_sent_at IS NULL
      LIMIT 200`,
     [],
   );
-  let sent = 0;
+  let revealSent = 0;
+  let offerSent = 0;
   let skipped = 0;
   let gone = 0;
   for (const r of due) {
     const created = await scanCreatedAt(r.scan_id);
     if (created === null || (await personSettled(r.scan_id))) {
-      await markOfferDecision(r.endpoint, r.scan_id, -1);
+      await markBothNever(r.endpoint, r.scan_id);
       skipped += 1;
       continue;
     }
     if (now < created + OFFER_DELAY_MS) continue; // not due yet; stays undecided
     if (now >= created + OFFER_WINDOW_MS) {
-      await markOfferDecision(r.endpoint, r.scan_id, -1);
+      await markBothNever(r.endpoint, r.scan_id);
       skipped += 1;
       continue;
     }
-    try {
-      await wp.sendNotification(
-        { endpoint: r.endpoint, keys: { p256dh: r.p256dh, auth: r.auth } },
-        JSON.stringify({
-          title: "Your first basic reading is $1 👁️",
-          body: "Your iris reading is still locked. Your first basic reading — your top signs in full, with the body map — is $1. The offer lasts 7 days from your scan.",
-          url: `/?scan=${encodeURIComponent(r.scan_id)}`,
-        }),
-      );
-      await createOfferForScan(r.scan_id, r.user_id, created, now);
-      await markOfferDecision(r.endpoint, r.scan_id, now);
-      sent += 1;
-    } catch (e) {
-      const status = (e as { statusCode?: number }).statusCode;
-      if (status === 404 || status === 410) {
-        await query(`DELETE FROM iris_unlock_reminders WHERE endpoint = $1`, [r.endpoint]);
-        await query(`DELETE FROM iris_push_subscriptions WHERE endpoint = $1`, [r.endpoint]);
-        gone += 1;
-      }
-      // Any other failure: leave the row undecided; it retries.
-    }
+    const revealed = (await getRevealAt(r.scan_id)) !== null;
+    const outcome = await attemptStagePushSend(wp, r, created, now, revealed);
+    if (outcome === "reveal") revealSent += 1;
+    else if (outcome === "offer") offerSent += 1;
+    else if (outcome === "gone") gone += 1;
+    else if (outcome === "skipped") skipped += 1;
+    // "failed" leaves the row undecided; it retries on the next run.
   }
-  return { sent, skipped, gone };
+  return { revealSent, offerSent, skipped, gone };
+}
+
+/** Exit-triggered prompts (Adam, 2026-11-15 23:42 + 23:51): the
+ *  person left the reading without unlocking and the app reported
+ *  the exit. Sends promptly — no 1-hour delay — to every armed
+ *  device for the scan, at whichever stage applies: the stage-1
+ *  reveal prompt before the reveal flag, the $1 offer after it.
+ *  Only when the reading is still locked at send time, inside the
+ *  7-day window, and never sent before at that stage (the same
+ *  flags the sweep uses). The sweep stays as the backstop for
+ *  exits the app couldn't report (killed app, offline at exit,
+ *  dropped beacon); the shared flags mean a person never gets
+ *  either stage twice. The email channel runs alongside this in
+ *  the exit route (lib/offerEmail.ts) — same stages, same gating,
+ *  separate per-channel flags. */
+export async function sendExitPushPrompts(
+  scanId: string,
+): Promise<{ revealSent: number; offerSent: number; skipped: number; gone: number }> {
+  const wp = client();
+  if (!wp) return { revealSent: 0, offerSent: 0, skipped: 0, gone: 0 };
+  await ensureSchema();
+  const now = Date.now();
+  const rows = await query<OfferRow>(
+    `SELECT r.endpoint, r.scan_id, r.reveal_sent_at, r.offer_sent_at, s.p256dh, s.auth, s.user_id
+     FROM iris_unlock_reminders r
+     JOIN iris_push_subscriptions s ON s.endpoint = r.endpoint
+     WHERE r.scan_id = $1 AND (r.reveal_sent_at IS NULL OR r.offer_sent_at IS NULL)`,
+    [scanId],
+  );
+  let revealSent = 0;
+  let offerSent = 0;
+  let skipped = 0;
+  let gone = 0;
+  const created = await scanCreatedAt(scanId);
+  if (created === null || (await personSettled(scanId)) || now >= created + OFFER_WINDOW_MS) {
+    for (const r of rows) {
+      await markBothNever(r.endpoint, r.scan_id);
+      skipped += 1;
+    }
+    return { revealSent, offerSent, skipped, gone };
+  }
+  const revealed = (await getRevealAt(scanId)) !== null;
+  for (const r of rows) {
+    const outcome = await attemptStagePushSend(wp, r, created, now, revealed);
+    if (outcome === "reveal") revealSent += 1;
+    else if (outcome === "offer") offerSent += 1;
+    else if (outcome === "gone") gone += 1;
+    else if (outcome === "skipped") skipped += 1;
+  }
+  return { revealSent, offerSent, skipped, gone };
 }
