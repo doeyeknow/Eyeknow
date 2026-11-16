@@ -63,7 +63,7 @@ export async function requestNativeEyeCapture(
           settled = true;
 
           if (timer !== undefined) clearTimeout(timer);
-          bridge.onmessage = previousHandler;
+          if (bridge) bridge.onmessage = previousHandler;
 
           if (error) reject(error);
           else resolve(capture);
