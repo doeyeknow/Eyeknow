@@ -1,5 +1,6 @@
 import webpush from "web-push";
 import { ensureSchema, query } from "./db";
+import { createOfferForScan, OFFER_DELAY_MS, OFFER_WINDOW_MS } from "./firstBasicOffer";
 
 // Unlock-reminder Web Push (Adam, 2026-11-05): someone scans an iris,
 // leaves the reading locked, and — if they opted into notifications —
@@ -169,4 +170,97 @@ export async function runUnlockReminders(): Promise<{ sent: number; cleared: num
     }
   }
   return { sent, cleared, gone };
+}
+
+interface OfferRow {
+  endpoint: string;
+  scan_id: string;
+  p256dh: string;
+  auth: string;
+  user_id: string | null;
+}
+
+/** The scan's own creation time (ms epoch), from either store.
+ *  Null when the scan is gone from both. */
+async function scanCreatedAt(scanId: string): Promise<number | null> {
+  const rows = await query<{ created_at: number }>(
+    `SELECT created_at FROM iris_scans WHERE scan_id = $1
+     UNION ALL
+     SELECT created_at FROM iris_shared_scans WHERE scan_id = $1
+     LIMIT 1`,
+    [scanId],
+  );
+  // pg returns BIGINT as a string — coerce, or the delay/window
+  // arithmetic below would concatenate instead of add.
+  return rows.length ? Number(rows[0].created_at) : null;
+}
+
+/** Mark a reminder row's offer decision: -1 = never send (settled
+ *  or expired scan), or a timestamp = sent at. */
+async function markOfferDecision(endpoint: string, scanId: string, value: number): Promise<void> {
+  await query(
+    `UPDATE iris_unlock_reminders SET offer_sent_at = $3 WHERE endpoint = $1 AND scan_id = $2`,
+    [endpoint, scanId, value],
+  );
+}
+
+/** Send the first-basic $1 offer, once per (device, scan), one hour
+ *  after a scan that stays locked. The offer row is created only
+ *  when a notification actually goes out — the row is what checkout
+ *  prices from, so no notification means no $1 price. Scans older
+ *  than the 7-day window never get the offer. Copy names the offer
+ *  plainly and states the real window; no urgency tricks. Dead
+ *  subscriptions are removed with their reminders, as above. */
+export async function runFirstBasicOffers(): Promise<{ sent: number; skipped: number; gone: number }> {
+  const wp = client();
+  if (!wp) return { sent: 0, skipped: 0, gone: 0 };
+  await ensureSchema();
+  const now = Date.now();
+  const due = await query<OfferRow>(
+    `SELECT r.endpoint, r.scan_id, s.p256dh, s.auth, s.user_id
+     FROM iris_unlock_reminders r
+     JOIN iris_push_subscriptions s ON s.endpoint = r.endpoint
+     WHERE r.offer_sent_at IS NULL
+     LIMIT 200`,
+    [],
+  );
+  let sent = 0;
+  let skipped = 0;
+  let gone = 0;
+  for (const r of due) {
+    const created = await scanCreatedAt(r.scan_id);
+    if (created === null || (await personSettled(r.scan_id))) {
+      await markOfferDecision(r.endpoint, r.scan_id, -1);
+      skipped += 1;
+      continue;
+    }
+    if (now < created + OFFER_DELAY_MS) continue; // not due yet; stays undecided
+    if (now >= created + OFFER_WINDOW_MS) {
+      await markOfferDecision(r.endpoint, r.scan_id, -1);
+      skipped += 1;
+      continue;
+    }
+    try {
+      await wp.sendNotification(
+        { endpoint: r.endpoint, keys: { p256dh: r.p256dh, auth: r.auth } },
+        JSON.stringify({
+          title: "Your first basic reading is $1 👁️",
+          body: "Your iris reading is still locked. Your first basic reading — your top signs in full, with the body map — is $1. The offer lasts 7 days from your scan.",
+          url: `/?scan=${encodeURIComponent(r.scan_id)}`,
+        }),
+      );
+      await createOfferForScan(r.scan_id, r.user_id, created, now);
+      await markOfferDecision(r.endpoint, r.scan_id, now);
+      sent += 1;
+    } catch (e) {
+      const status = (e as { statusCode?: number }).statusCode;
+      if (status === 404 || status === 410) {
+        await query(`DELETE FROM iris_unlock_reminders WHERE endpoint = $1`, [r.endpoint]);
+        await query(`DELETE FROM iris_push_subscriptions WHERE endpoint = $1`, [r.endpoint]);
+        gone += 1;
+      }
+      // Any other failure: leave the row undecided; it retries.
+    }
+  }
+  return { sent, skipped, gone };
 }

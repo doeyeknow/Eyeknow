@@ -285,6 +285,22 @@ export function ensureSchema(): Promise<void> {
         created_at BIGINT NOT NULL,
         PRIMARY KEY (endpoint, scan_id)
       )`);
+      // First-basic $1 offer (Adam, 2026-11-15): one offer row per
+      // scan, created when the offer notification is sent. The row
+      // is what checkout, verify, and the webhook check — the price
+      // is never trusted from the client or the notification link.
+      // offer_sent_at on the reminder row dedupes the notification
+      // itself: NULL = undecided, -1 = decided never to send
+      // (settled or expired scan), >0 = sent at that ms timestamp.
+      await query(`ALTER TABLE iris_unlock_reminders ADD COLUMN IF NOT EXISTS offer_sent_at BIGINT`);
+      await query(`CREATE TABLE IF NOT EXISTS iris_first_basic_offers (
+        scan_id TEXT PRIMARY KEY,
+        user_id UUID REFERENCES iris_users(id) ON DELETE SET NULL,
+        created_at BIGINT NOT NULL,
+        expires_at BIGINT NOT NULL,
+        redeemed_session_id TEXT,
+        redeemed_at TIMESTAMPTZ
+      )`);
       // Homepage reviews (Adam, 2026-11-05): visitors submit from
       // the reviews section; nothing shows publicly until the
       // owner approves it in /admin (status pending → approved).

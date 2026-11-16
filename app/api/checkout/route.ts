@@ -3,6 +3,7 @@ import { getSessionUser } from "@/lib/auth";
 import { dbConfigured, ensureSchema, query } from "@/lib/db";
 import { BASIC_PRICE_CENTS, UNLOCK_PRICE_CENTS, getStripe } from "@/lib/stripe";
 import { FOLLOWUP_PRICE_CENTS, accountUnlockPriceCents, applyUnlockDiscount } from "@/lib/pricing";
+import { accountBasicOfferStatus } from "@/lib/firstBasicOffer";
 import { normalizeRefCode, resolveAffiliate } from "@/lib/affiliates";
 import { getScanDiscountPct } from "@/lib/supporterGifts";
 import type { ScanRecord } from "@/lib/chart";
@@ -87,7 +88,13 @@ export async function POST(req: NextRequest) {
   // Basic reading (Adam, 2026-11-05): flat $3, never a follow-up
   // (those unlock in full for $1), never affiliate-priced or
   // gift-discounted. The referral code still rides along in the
-  // metadata for attribution.
+  // metadata for attribution — the webhook never credits a basic
+  // sale, so a basic purchase earns the referral $0.
+  // First-basic $1 offer (Adam, 2026-11-15): when this scan carries
+  // a live offer row and the account has never unlocked a basic
+  // reading, the basic price is $1 — decided here, server-side, from
+  // the offer row and unlock history. The client never supplies it.
+  let firstBasicOffer = false;
   if (basic) {
     if (followup) {
       return NextResponse.json(
@@ -98,6 +105,11 @@ export async function POST(req: NextRequest) {
     priceCents = BASIC_PRICE_CENTS;
     affiliatePrice = null;
     giftDiscountPct = 0;
+    const offerStatus = await accountBasicOfferStatus(user.id, scanId);
+    if (offerStatus.offer) {
+      priceCents = offerStatus.priceCents;
+      firstBasicOffer = true;
+    }
   }
   const productName = basic
     ? "eyeKnow — Basic reading"
@@ -140,6 +152,7 @@ export async function POST(req: NextRequest) {
         ...(affiliatePrice !== null && refCode ? { ref: refCode, affiliatePrice: String(affiliatePrice) } : {}),
         ...(giftDiscountPct > 0 ? { giftDiscount: String(giftDiscountPct) } : {}),
         ...(basic ? { basic: "1", ...(refCode ? { ref: refCode } : {}) } : {}),
+        ...(firstBasicOffer ? { firstBasicOffer: "1" } : {}),
       },
       return_url: successUrl,
     });
@@ -170,6 +183,7 @@ export async function POST(req: NextRequest) {
       ...(affiliatePrice !== null && refCode ? { ref: refCode, affiliatePrice: String(affiliatePrice) } : {}),
         ...(giftDiscountPct > 0 ? { giftDiscount: String(giftDiscountPct) } : {}),
         ...(basic ? { basic: "1", ...(refCode ? { ref: refCode } : {}) } : {}),
+        ...(firstBasicOffer ? { firstBasicOffer: "1" } : {}),
     },
     success_url: successUrl,
     cancel_url: `${origin}/?checkout=cancelled&scan=${encodeURIComponent(scanId)}`,

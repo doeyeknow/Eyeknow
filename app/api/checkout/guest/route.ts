@@ -5,6 +5,7 @@ import { FOLLOWUP_PRICE_CENTS, sharedUnlockPriceCents, applyUnlockDiscount } fro
 import { getSharedScan } from "@/lib/shared";
 import { normalizeRefCode, resolveAffiliate } from "@/lib/affiliates";
 import { getScanDiscountPct } from "@/lib/supporterGifts";
+import { guestBasicOfferStatus } from "@/lib/firstBasicOffer";
 
 export const dynamic = "force-dynamic";
 
@@ -58,6 +59,11 @@ export async function POST(req: NextRequest) {
     if (giftDiscountPct > 0) priceCents = applyUnlockDiscount(priceCents, giftDiscountPct);
   }
   // Basic reading (Adam, 2026-11-05): flat $3 — see /api/checkout.
+  // First-basic $1 offer (Adam, 2026-11-15): guests have no account
+  // to key "once" on, so the offer is per scan — a live offer row,
+  // inside its window, unredeemed, and the person not already basic.
+  // Decided here, server-side; the client never supplies the price.
+  let firstBasicOffer = false;
   if (basic) {
     if (followup) {
       return NextResponse.json(
@@ -68,6 +74,11 @@ export async function POST(req: NextRequest) {
     priceCents = BASIC_PRICE_CENTS;
     affiliatePrice = null;
     giftDiscountPct = 0;
+    const offerStatus = await guestBasicOfferStatus(scanId);
+    if (offerStatus.offer) {
+      priceCents = offerStatus.priceCents;
+      firstBasicOffer = true;
+    }
   }
   const productName = basic
     ? "eyeKnow — Basic reading"
@@ -115,6 +126,7 @@ export async function POST(req: NextRequest) {
         ...(affiliatePrice !== null && refCode ? { ref: refCode, affiliatePrice: String(affiliatePrice) } : {}),
         ...(giftDiscountPct > 0 ? { giftDiscount: String(giftDiscountPct) } : {}),
         ...(basic ? { basic: "1", ...(refCode ? { ref: refCode } : {}) } : {}),
+        ...(firstBasicOffer ? { firstBasicOffer: "1" } : {}),
       },
       return_url: successUrl,
     });
@@ -145,6 +157,7 @@ export async function POST(req: NextRequest) {
       ...(affiliatePrice !== null && refCode ? { ref: refCode, affiliatePrice: String(affiliatePrice) } : {}),
         ...(giftDiscountPct > 0 ? { giftDiscount: String(giftDiscountPct) } : {}),
         ...(basic ? { basic: "1", ...(refCode ? { ref: refCode } : {}) } : {}),
+        ...(firstBasicOffer ? { firstBasicOffer: "1" } : {}),
     },
     success_url: successUrl,
     cancel_url: `${origin}/?checkout=cancelled&${back}`,

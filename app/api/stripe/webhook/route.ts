@@ -7,6 +7,7 @@ import { grantSupporterGifts, GIFT_UNLOCK_DISCOUNT_PCT, getScanDiscountPct } fro
 import { BOOK_PRICE_CENTS, BOOKS, isBookSlug, recordBookPurchase, type BookSlug } from "@/lib/books";
 import { recordAffiliateSale } from "@/lib/affiliates";
 import { applyUnlockDiscount } from "@/lib/pricing";
+import { validateOfferSession } from "@/lib/firstBasicOffer";
 import {
   activateSubscription,
   recordSubscriptionAffiliateSale,
@@ -182,18 +183,46 @@ export async function POST(req: NextRequest) {
           discountBlocked = true;
         }
       }
+      // First-basic $1 offer sessions fail closed like discounted
+      // ones: the offer row must exist, the charge must be exactly
+      // $1, and the redemption claim must succeed — and the flag
+      // may only ever ride a basic session (our checkouts never
+      // put it anywhere else). A mismatch unlocks nothing, grants
+      // nothing, and credits nothing.
+      const offerSession = session.metadata?.firstBasicOffer === "1";
+      let offerBlocked = false;
+      if (offerSession && !basic) {
+        console.error("offer session blocked: flag on a non-basic session", {
+          sessionId: session.id,
+          scanId,
+        });
+        offerBlocked = true;
+      } else if (offerSession) {
+        if (!(await validateOfferSession(scanId, session.id, session.amount_total ?? 0))) {
+          console.error("offer session blocked: amount/offer mismatch", {
+            sessionId: session.id,
+            scanId,
+            amount: session.amount_total,
+          });
+          offerBlocked = true;
+        }
+      }
       if (basic) {
         // Basic purchase (Adam, 2026-11-05): record the sale and
         // mark the person basic — never unlocked, no supporter
         // grants, no affiliate credit (the $3 charge can never
-        // match a full-price affiliate validation).
-        await query(
-          `INSERT INTO iris_purchases (user_id, scan_id, stripe_session_id, amount_cents)
-           VALUES ($1, $2, $3, $4) ON CONFLICT (stripe_session_id) DO NOTHING`,
-          [guest ? null : userId || null, scanId, session.id, session.amount_total ?? 0],
-        );
-        await markScanBasic(scanId);
-      } else if (!discountBlocked && guest) {
+        // match a full-price affiliate validation; the $1 offer
+        // charge pays the referral $0 by the same gate — Adam,
+        // 2026-11-15, explicit).
+        if (!offerBlocked) {
+          await query(
+            `INSERT INTO iris_purchases (user_id, scan_id, stripe_session_id, amount_cents)
+             VALUES ($1, $2, $3, $4) ON CONFLICT (stripe_session_id) DO NOTHING`,
+            [guest ? null : userId || null, scanId, session.id, session.amount_total ?? 0],
+          );
+          await markScanBasic(scanId);
+        }
+      } else if (!discountBlocked && !offerBlocked && guest) {
         // Guest purchase from a printed report's QR link: unlock the
         // shared copy (and any account copy of the same reading).
         await query(
@@ -202,7 +231,7 @@ export async function POST(req: NextRequest) {
           [scanId, session.id, session.amount_total ?? 0],
         );
         await unlockSharedScan(scanId);
-      } else if (!discountBlocked && userId) {
+      } else if (!discountBlocked && !offerBlocked && userId) {
         await query(
           `INSERT INTO iris_purchases (user_id, scan_id, stripe_session_id, amount_cents)
            VALUES ($1, $2, $3, $4) ON CONFLICT (stripe_session_id) DO NOTHING`,
@@ -226,7 +255,7 @@ export async function POST(req: NextRequest) {
       // Idempotent on the session: a redelivered webhook grants zero
       // more. This webhook is the only granting path, and the grants
       // never send purchase emails.
-      if (!basic && !discountBlocked && (session.amount_total ?? 0) >= SUPPORTER_GRANT_MIN_CENTS) {
+      if (!basic && !discountBlocked && !offerBlocked && (session.amount_total ?? 0) >= SUPPORTER_GRANT_MIN_CENTS) {
         await grantSupporterGifts(guest ? null : userId || null, scanId, session.id);
       }
       // Affiliates: 50/50 split on a reading sale, credited here
@@ -239,7 +268,7 @@ export async function POST(req: NextRequest) {
           customer_details?: { email?: string };
           customer_email?: string;
         };
-        if (!basic && !discountBlocked) {
+        if (!basic && !discountBlocked && !offerBlocked) {
           await recordAffiliateSale({
             stripeSessionId: session.id,
             refCode: session.metadata?.ref ?? null,

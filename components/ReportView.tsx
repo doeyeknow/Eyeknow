@@ -8,6 +8,7 @@ import IrisIllustration from "./IrisIllustration";
 import IrisFlip from "./IrisFlip";
 import AffPrice from "./AffiliatePrice";
 import UnlockPrice from "./DiscountPrice";
+import BasicPrice, { FirstBasicOfferNote } from "./FirstBasicOffer";
 import SignGuideModal from "./SignGuide";
 import { buildDiet } from "@/lib/diet";
 import QRCode from "qrcode";
@@ -374,7 +375,7 @@ export default function ReportView({
             {followupPrice ? (
               <h2>Unlock the full reading — <UnlockPrice scanId={scan.id} accessToken={scan.accessToken} followup={followupPrice} /></h2>
             ) : (
-              <h2>Unlock the basic reading — $3</h2>
+              <h2>Unlock the basic reading — <BasicPrice scanId={scan.id} accessToken={scan.accessToken} /></h2>
             )}
             {followupPrice ? (
               <p>
@@ -403,15 +404,16 @@ export default function ReportView({
             {!followupPrice && !basic && onUnlockBasic && (
               <>
                 <p>
-                  <b>Start with the basic reading — $3.</b> It opens {poss ?? "your"}{" "}
+                  <b>Start with the basic reading — <BasicPrice scanId={scan.id} accessToken={scan.accessToken} />.</b> It opens {poss ?? "your"}{" "}
                   {PREVIEW_COUNT} most important signs <b>in full</b> — complete
                   descriptions, colour stages and sign shapes — with the{" "}
                   <b>complete body map</b>. One unlock covers <b>both irises</b> of
                   this person, so the other eye&rsquo;s basic reading is included too.
                 </p>
                 <button type="button" className="btn big" onClick={onUnlockBasic} disabled={unlockBusy}>
-                  {unlockBusy ? "Opening checkout…" : "Unlock the basic reading — $3"}
+                  {unlockBusy ? "Opening checkout…" : <>Unlock the basic reading — <BasicPrice scanId={scan.id} accessToken={scan.accessToken} /></>}
                 </button>
+                <FirstBasicOfferNote scanId={scan.id} accessToken={scan.accessToken} />
                 <button type="button" className="btn ghost" onClick={onUnlock} disabled={unlockBusy} style={{ marginTop: 10 }}>
                   {unlockBusy ? "Opening checkout…" : <>Or unlock the full reading — <UnlockPrice scanId={scan.id} accessToken={scan.accessToken} followup={followupPrice} /></>}
                 </button>
@@ -1197,15 +1199,16 @@ export default function ReportView({
             {!followupPrice && !basic && onUnlockBasic && (
               <>
                 <p>
-                  <b>Start with the basic reading — $3.</b> It opens {poss ?? "your"}{" "}
+                  <b>Start with the basic reading — <BasicPrice scanId={scan.id} accessToken={scan.accessToken} />.</b> It opens {poss ?? "your"}{" "}
                   {PREVIEW_COUNT} most important signs <b>in full</b> — complete
                   descriptions, colour stages and sign shapes — with the{" "}
                   <b>complete body map</b>. One unlock covers <b>both irises</b> of
                   this person, so the other eye&rsquo;s basic reading is included too.
                 </p>
                 <button type="button" className="btn big" onClick={onUnlockBasic} disabled={unlockBusy}>
-                  {unlockBusy ? "Opening checkout…" : "Unlock the basic reading — $3"}
+                  {unlockBusy ? "Opening checkout…" : <>Unlock the basic reading — <BasicPrice scanId={scan.id} accessToken={scan.accessToken} /></>}
                 </button>
+                <FirstBasicOfferNote scanId={scan.id} accessToken={scan.accessToken} />
                 <button type="button" className="btn ghost" onClick={onUnlock} disabled={unlockBusy} style={{ marginTop: 10 }}>
                   {unlockBusy ? "Opening checkout…" : <>Or unlock the full reading — <UnlockPrice scanId={scan.id} accessToken={scan.accessToken} followup={followupPrice} /></>}
                 </button>

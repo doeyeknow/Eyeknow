@@ -23,8 +23,8 @@ export default function UnlockRemindButton({ scanId }: { scanId: string }) {
   if (state === "done") {
     return (
       <p className="muted" style={{ marginTop: 10, marginBottom: 0 }}>
-        🔔 You&apos;re set — if this reading stays locked, we&apos;ll send a reminder. Just
-        the one nudge or two, never a stream.
+        🔔 You&apos;re set — if this reading stays locked, we&apos;ll send a reminder or
+        two, plus a one-time offer for your first basic reading. Never a stream.
       </p>
     );
   }

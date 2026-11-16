@@ -6,6 +6,7 @@ import { accountUnlockPriceCents, sharedUnlockPriceCents, applyUnlockDiscount } 
 import { getSharedScan, markScanBasic, unlockPersonForScan, unlockSharedScan } from "@/lib/shared";
 import { getGiftById, settleGiftPayment } from "@/lib/gifts";
 import { GIFT_UNLOCK_DISCOUNT_PCT, getScanDiscountPct } from "@/lib/supporterGifts";
+import { validateOfferSession } from "@/lib/firstBasicOffer";
 
 export const dynamic = "force-dynamic";
 
@@ -95,8 +96,14 @@ export async function POST(req: NextRequest) {
     }
     // Basic purchase (Adam, 2026-11-05): the charge must be
     // exactly $3; settlement marks the person basic, never unlocked.
+    // A first-basic $1 offer session must charge exactly $1 and pass
+    // the shared offer validation (row exists, redemption claimable).
     if (session.metadata?.basic === "1") {
-      if ((session.amount_total ?? 0) !== BASIC_PRICE_CENTS) {
+      const offerSession = session.metadata?.firstBasicOffer === "1";
+      const offerOk =
+        offerSession &&
+        (await validateOfferSession(scanId, sessionId, session.amount_total ?? 0));
+      if (offerSession ? !offerOk : (session.amount_total ?? 0) !== BASIC_PRICE_CENTS) {
         return NextResponse.json({ ok: false, error: "payment not confirmed" }, { status: 402 });
       }
       await query(
@@ -134,8 +141,14 @@ export async function POST(req: NextRequest) {
   // session metadata for a referred purchase (follow-ups never
   // carry one — they stay $1), else the server-recomputed price.
   // Basic purchase (Adam, 2026-11-05): exactly $3, marks basic.
+  // A first-basic $1 offer session must charge exactly $1 and pass
+  // the shared offer validation (row exists, redemption claimable).
   if (session.metadata?.basic === "1") {
-    if ((session.amount_total ?? 0) !== BASIC_PRICE_CENTS) {
+    const offerSession = session.metadata?.firstBasicOffer === "1";
+    const offerOk =
+      offerSession &&
+      (await validateOfferSession(scanId, sessionId, session.amount_total ?? 0));
+    if (offerSession ? !offerOk : (session.amount_total ?? 0) !== BASIC_PRICE_CENTS) {
       return NextResponse.json({ ok: false, error: "payment not confirmed" }, { status: 402 });
     }
     await query(
