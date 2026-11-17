@@ -2,11 +2,15 @@
 
 import { useEffect, useState } from "react";
 
+import { isNativeShell } from "@/lib/nativeCapture";
+
 // Install invite as a toast (Adam, 2026-11-05): in a browser tab the
 // bottom bar is always shown now, so the old fixed InstallFooter is
 // replaced by this dismissible toast. It appears once, a couple of
 // seconds after the page settles; dismissing it silences it for two
-// weeks. It never shows in the installed app.
+// weeks. It never shows in the installed app, and never inside the
+// native app's WebView either (Adam, 2026-11-17) — there the app is
+// already installed, so the invite is meaningless.
 const KEY = "eyeknow-install-toast-dismissed";
 const RESHOW_MS = 14 * 24 * 60 * 60 * 1000;
 
@@ -36,7 +40,7 @@ export default function InstallToast({
   const [help, setHelp] = useState(false);
 
   useEffect(() => {
-    if (standalone || installed) {
+    if (standalone || installed || isNativeShell()) {
       setShow(false);
       return;
     }
@@ -51,7 +55,7 @@ export default function InstallToast({
     return () => window.clearTimeout(t);
   }, [standalone, installed]);
 
-  if (!show || standalone || installed) return null;
+  if (!show || standalone || installed || isNativeShell()) return null;
 
   const dismiss = () => {
     try {

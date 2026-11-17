@@ -364,9 +364,6 @@ interface Geom {
   pupilR: number;
   annulus: number;
   pupilRatio: number;
-  /** The measured pupil shape, when it read oval: the drawn pupil
-   *  becomes this ellipse (radii already carry the draw scale). */
-  pupilEllipse?: { rx: number; ry: number; rot: number };
   localAt: (x: number, y: number) => RGB | null;
 }
 
@@ -475,19 +472,11 @@ export default function IrisIllustration({
         const d = Math.hypot(dx, dy);
         return src.local(Math.atan2(dy, dx), clamp((d - pupilR) / annulus, 0, 1));
       };
-      const ps = scan.profile?.pupilShape;
-      const pupilEllipse =
-        ps?.form === "oval" && ps.aspect
-          ? (() => {
-              const k = Math.sqrt(ps.aspect);
-              return {
-                rx: pupilR * k,
-                ry: pupilR / k,
-                rot: (((ps.axisDeg ?? 0) - 90) * Math.PI) / 180,
-              };
-            })()
-          : undefined;
-      return { pal: src.pal, cx, cy, R, pupilR, annulus, pupilRatio, pupilEllipse, localAt };
+      // The drawn pupil is always a true circle (Adam, 2026-11-17,
+      // reversing the 2026-11-04 oval call): the measured pupil
+      // shape stays in the profile and the reading text, but the
+      // illustration never draws the pupil as an ellipse.
+      return { pal: src.pal, cx, cy, R, pupilR, annulus, pupilRatio, localAt };
     };
 
     const paintBackdrop = (c: CanvasRenderingContext2D, src: ColorSource, g: Geom) => {
@@ -509,27 +498,17 @@ export default function IrisIllustration({
 
     const paintPupil = (c: CanvasRenderingContext2D, g: Geom, rand: () => number) => {
       const { cx, cy, pupilR, annulus, pal } = g;
-      const el = g.pupilEllipse;
-      // Boundary radius in direction a — the circle, or the measured
-      // oval when the pupil read oval (Adam, 2026-11-04).
-      const rAt = (a: number): number => {
-        if (!el) return pupilR;
-        const ca = Math.cos(a - el.rot);
-        const sa = Math.sin(a - el.rot);
-        return (el.rx * el.ry) / Math.hypot(el.ry * ca, el.rx * sa);
-      };
       const pupilPath = (scale: number) => {
         c.beginPath();
-        if (el) c.ellipse(cx, cy, el.rx * scale, el.ry * scale, el.rot, 0, TAU);
-        else c.arc(cx, cy, pupilR * scale, 0, TAU);
+        c.arc(cx, cy, pupilR * scale, 0, TAU);
       };
       pupilPath(1);
       c.fillStyle = "#0a0705";
       c.fill();
       for (let i = 0; i < 110; i++) {
         const a = rand() * TAU;
-        const r0 = rAt(a) * (0.94 + rand() * 0.05);
-        const r1 = rAt(a) + annulus * (0.02 + rand() * 0.05);
+        const r0 = pupilR * (0.94 + rand() * 0.05);
+        const r1 = pupilR + annulus * (0.02 + rand() * 0.05);
         c.strokeStyle = css(rand() < 0.5 ? pal.ruff : shade(pal.ground, 0.6), 0.35 + rand() * 0.4);
         c.lineWidth = 1 + rand() * 1.8;
         c.beginPath();
