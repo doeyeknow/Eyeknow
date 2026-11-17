@@ -201,8 +201,22 @@ export default function AppDownloadLink() {
                 opacity: 0.75,
               }}
             >
-              Your phone will ask you to allow installs from your browser —
-              that&apos;s normal for apps downloaded outside the Play Store.
+              Chrome may warn that this type of file can harm your device. The
+              file comes straight from eyeknow.app — tap Keep to continue the
+              download.
+            </p>
+            <p
+              style={{
+                margin: "8px 0 0",
+                fontSize: 13,
+                lineHeight: 1.5,
+                opacity: 0.75,
+              }}
+            >
+              When it&apos;s downloaded, open it from your notifications or
+              Downloads folder to install. Your phone will ask you to allow
+              installs from your browser — that&apos;s normal for apps
+              downloaded outside the Play Store.
             </p>
           </div>
         </div>
