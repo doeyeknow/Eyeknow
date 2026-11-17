@@ -20,6 +20,10 @@ interface NativeCaptureBridge {
 declare global {
   interface Window {
     EyeknowCapture?: NativeCaptureBridge;
+    /** The raw injected Java object. Unlike the EyeknowCapture shim
+     *  (injected on page finish), this exists from the first script
+     *  execution, so it is the reliable "inside the app" signal. */
+    EyeknowNative?: unknown;
   }
 }
 
@@ -29,6 +33,17 @@ export function hasNativeEyeCapture(): boolean {
   return (
     typeof window !== "undefined" &&
     typeof window.EyeknowCapture?.postMessage === "function"
+  );
+}
+
+/** True when the page runs inside the native app's WebView. Checks the
+ *  synchronously-injected Java object first, so the answer is correct
+ *  even before the capture shim lands on page finish. */
+export function isNativeShell(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    (typeof window.EyeknowNative !== "undefined" ||
+      typeof window.EyeknowCapture?.postMessage === "function")
   );
 }
 

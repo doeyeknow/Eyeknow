@@ -2,16 +2,17 @@
 
 // Android-app button on the capture step. Tapping it opens a modal
 // describing what the native app does, with the download inside it.
-// Android browsers only, and never inside the app itself (the native
-// shell exposes the capture bridge, so the button would be pointless
-// there). The stored referral code rides along on the download link
+// Android browsers only, and never inside the app itself (detected via
+// the synchronously-injected native object, so the button can never
+// flash in before the capture shim lands). The stored referral code
+// rides along on the download link
 // when there is one, so the downloaded APK is stamped for the
 // affiliate — the same code checkout would credit. Inline styles only:
 // globals.css is at the deploy cap. Theme values mirror the site's
 // paper/gold palette via its CSS variables, with fallbacks.
 import { useEffect, useState } from "react";
 import { getReferralCode, REFERRAL_CHANGED_EVENT } from "./ReferralCapture";
-import { hasNativeEyeCapture } from "@/lib/nativeCapture";
+import { isNativeShell } from "@/lib/nativeCapture";
 import { isValidRefValue } from "@/lib/affiliates-client";
 
 const FEATURES: Array<{ title: string; text: string }> = [
@@ -39,16 +40,14 @@ const FEATURES: Array<{ title: string; text: string }> = [
 
 export default function AppDownloadLink() {
   const [href, setHref] = useState<string | null>(null);
-  const [hasRef, setHasRef] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!/Android/i.test(navigator.userAgent)) return;
-    if (hasNativeEyeCapture()) return;
+    if (isNativeShell()) return;
     const refresh = () => {
       const code = getReferralCode();
       const stamped = Boolean(code && isValidRefValue(code));
-      setHasRef(stamped);
       setHref(
         stamped
           ? `/api/app/download?ref=${encodeURIComponent(code as string)}`
@@ -194,18 +193,6 @@ export default function AppDownloadLink() {
             >
               ⬇ Download the app
             </a>
-            {hasRef && (
-              <p
-                style={{
-                  margin: "8px 0 0",
-                  fontSize: 13,
-                  textAlign: "center",
-                  opacity: 0.75,
-                }}
-              >
-                This download carries the referral from the link you came in on.
-              </p>
-            )}
             <p
               style={{
                 margin: "10px 0 0",
