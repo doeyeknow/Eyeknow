@@ -1216,7 +1216,15 @@ export async function autoRead(
   }
 
   // ── 7. Photo quality on the crop ─────────────────────────────────
-  const OUT = 1024;
+  // The stored/displayed photo renders the crop at OUT pixels and
+  // re-encodes it — this is the photo the report shows, and the
+  // original full-resolution capture is not kept. OUT was 1024 at
+  // JPEG 0.85, which threw away most of the detail the native app
+  // captures (up to 4096px at quality 92); Adam reported 2026-11-16
+  // that the uploaded photo looks worse than the capture. 2048 at
+  // 0.92 keeps four times the pixels at the capture pipeline's own
+  // quality while staying well inside request/DB payload limits.
+  const OUT = 2048;
   const out = document.createElement("canvas");
   out.width = OUT;
   out.height = OUT;
@@ -1258,7 +1266,7 @@ export async function autoRead(
       }
       oCtx.putImageData(idata, 0, 0);
     }
-    image = out.toDataURL("image/jpeg", 0.85);
+    image = out.toDataURL("image/jpeg", 0.92);
     const d = oCtx.getImageData(0, 0, OUT, OUT).data;
     const spx = sampler(d, OUT, OUT);
     let sum = 0;
